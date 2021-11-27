@@ -8,6 +8,7 @@ import { FooterComponent } from './public/template/footer/footer.component';
 import { NotFoundComponent } from './public/errors/not-found/not-found.component';
 import { InternalServerErrorComponent } from './public/errors/internal-server-error/internal-server-error.component';
 import { NavbarComponent } from './public/template/navbar/navbar.component';
+import { HomeComponent } from './public/general/home/home.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { NavbarComponent } from './public/template/navbar/navbar.component';
     FooterComponent,
     NotFoundComponent,
     InternalServerErrorComponent,
-    NavbarComponent
+    NavbarComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
