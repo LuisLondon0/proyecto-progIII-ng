@@ -6,6 +6,7 @@ import { RequestCreationComponent } from './request-creation/request-creation.co
 import { RequestEditionComponent } from './request-edition/request-edition.component';
 import { RequestListComponent } from './request-list/request-list.component';
 import { RemoveRequestComponent } from './remove-request/remove-request.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -17,7 +18,9 @@ import { RemoveRequestComponent } from './remove-request/remove-request.componen
   ],
   imports: [
     CommonModule,
-    RequestRoutingModule
+    RequestRoutingModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class RequestModule { }
