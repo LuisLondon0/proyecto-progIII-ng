@@ -18,7 +18,6 @@ export class RequestCreationComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    //private localStorageService: LocalStorageService,
     private router: Router,
     private service: RequestService
   ) { }

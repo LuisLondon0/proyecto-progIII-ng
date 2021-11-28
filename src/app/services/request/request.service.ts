@@ -36,4 +36,24 @@ export class RequestService {
       Authorization: `Bearer ${this.token}`
     })})
   }
+
+  SearchRecord(id: number): Observable<RequestModel>{
+    return this.http.get<RequestModel>(`${this.url}/solicitudes/${id}`);
+  }
+
+  EditRecord(data: RequestModel): Observable<RequestModel>{
+    return this.http.put<RequestModel>(`${this.url}/solicitudes/${data.id}`, {
+      id: data.id,
+      fecha: data.fecha,
+      nombreTrabajo: data.nombreTrabajo,
+      descripcion: data.descripcion,
+      modalidadId: data.modalidadId,
+      areaInvestigacionId: data.areaInvestigacionId,
+      tipoSolicitudId: data.tipoSolicitudId,
+      archivoZip: data.archivoZip,
+    },
+    {headers: new HttpHeaders({
+      Authorization: `Bearer ${this.token}`
+    })})
+  }
 }

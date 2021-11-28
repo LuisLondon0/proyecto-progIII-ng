@@ -11,7 +11,7 @@ const routes: Routes = [
     component: RequestCreationComponent
   },
   {
-    path: "request-edition",
+    path: "request-edition/:id",
     component: RequestEditionComponent
   },
   {
