@@ -1,0 +1,43 @@
+<div class="row">
+  <form [formGroup]="form" class="col s12">
+    <input type="hidden" formControlName="id" />
+    <div class="row">
+      <div class="input-field col s3">
+        <input formControlName="document" id="document" type="text">
+        <label for="documento">documento</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="firstName" id="firstName" type="text">
+        <label for="firstName">Primer Nombre</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="otherName" id="otherName" type="text">
+        <label for="otherName">Otro Nombre</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="firstLastName" id="firstLastName" type="text">
+        <label for="firstLastName">Primer Apellido</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="phone" id="phone" type="text">
+        <label for="phone">Celular</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="email" id="email" type="email">
+        <label for="email">correo</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s2">
+        <a routerLink="/parameters/proponent-list" class="btn btn-warning red">
+          Cancelar
+        </a>
+      </div>
+      <div class="input-field col s10">
+        <button (click)="SaveRecord()" class="btn btn-success">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

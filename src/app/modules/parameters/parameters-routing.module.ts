@@ -34,6 +34,7 @@ import { TypeOfRequestEditionComponent } from './type-of-request/type-of-request
 import { TypeOfRequestListComponent } from './type-of-request/type-of-request-list/type-of-request-list.component';
 
 const routes: Routes = [
+
   {
     path: "bonding-creation",
     component: BondingCreationComponent

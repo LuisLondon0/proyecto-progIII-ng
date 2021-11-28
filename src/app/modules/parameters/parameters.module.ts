@@ -36,6 +36,7 @@ import { JuryListComponent } from './jury/jury-list/jury-list.component';
 import { RemoveJuryComponent } from './jury/remove-jury/remove-jury.component';
 
 
+
 @NgModule({
   declarations: [
     BondingCreationComponent,
