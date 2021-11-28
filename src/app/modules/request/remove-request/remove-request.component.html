@@ -1,1 +1,42 @@
-<p>remove-request works!</p>
+<div class="row">
+    <div class="row">
+        <div class="input-field col s12">
+            <label>Esta seguro de eliminar el registro con la siguiente informacion: </label>
+            <br />
+            <ul>
+                <li>
+                    <strong>Id: {{id}}</strong>
+                </li>
+                <li>
+                    <strong>Fecha: {{fecha}}</strong>
+                </li>
+                <li>
+                    <strong>Nombre del Trabajo: {{nombreTrabajo}}</strong>
+                </li>
+                <li>
+                    <strong>Descripcion: {{descripcion}}</strong>
+                </li>
+                <li>
+                    <strong>Modalidad: {{modalidadId}}</strong>
+                </li>
+                <li>
+                    <strong>Linea de Investigacion: {{areaInvestigacionId}}</strong>
+                </li>
+                <li>
+                    <strong>Tipo de Solicitud: {{tipoSolicitudId}}</strong>
+                </li>
+                <li>
+                    <strong>Archivos Zip: {{archivoZip}}</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s2">
+            <a routerLink="/request/request-list" class="btn btn-danger red">Cancelar</a>
+        </div>
+        <div class="input-field col s10">
+            <button (click)="RemoveRecord()" class="btn btn-danger green">Confirmar</button>
+        </div>
+    </div>
+</div>

@@ -19,7 +19,7 @@ const routes: Routes = [
     component: RequestListComponent
   },
   {
-    path: "remove-request",
+    path: "remove-request/:id",
     component: RemoveRequestComponent
   },
 ];

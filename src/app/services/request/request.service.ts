@@ -56,4 +56,11 @@ export class RequestService {
       Authorization: `Bearer ${this.token}`
     })})
   }
+
+  RemoveRecord(id: number): Observable<any>{
+    return this.http.delete<RequestModel>(`${this.url}/solicitudes/${id}`,
+    {headers: new HttpHeaders({
+      Authorization: `Bearer ${this.token}`
+    })})
+  }
 }
