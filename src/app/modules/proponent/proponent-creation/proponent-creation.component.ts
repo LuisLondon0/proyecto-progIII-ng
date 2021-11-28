@@ -53,6 +53,7 @@ export class ProponentCreationComponent implements OnInit {
           console.log(data)
           this.typeVinculationList = data;
           setTimeout(() => {
+
             InitSelectById("selTypeVinculation");
           }, 100);
         }

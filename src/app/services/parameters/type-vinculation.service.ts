@@ -16,7 +16,7 @@ export class typeVinculationService {
     private http: HttpClient,
     private localStorageService: LocalStorageService
   ) {
-    this.token = this.localStorageService.GetToken();
+    //this.token = this.localStorageService.GetToken();
   }
 
   GetRecordList(): Observable<TypeVinculationModel[]> {
