@@ -9,7 +9,7 @@ import { NotFoundComponent } from './public/errors/not-found/not-found.component
 import { InternalServerErrorComponent } from './public/errors/internal-server-error/internal-server-error.component';
 import { NavbarComponent } from './public/template/navbar/navbar.component';
 import { HomeComponent } from './public/general/home/home.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,7 +22,8 @@ import { HomeComponent } from './public/general/home/home.component';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

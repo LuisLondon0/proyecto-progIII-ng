@@ -3,15 +3,15 @@
         <a routerLink="home" class="brand-logo">Inicio</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
-            <li><a routerLink="">Proponente</a></li>
-            <li><a routerLink="request/request-list">Solicitud</a></li>
-            <li><a routerLink="evaluation/evaluation-list">Evaluacion</a></li>
-            <li><a routerLink="">Reportes</a></li>
-            <li><a routerLink="">Login</a></li>
-            <li><a routerLink="">Logout</a></li>
-            <li><a routerLink="">Recuperar Contraseña</a></li>
-            <li><a routerLink="">Cambiar Contraseña</a></li>
-            <li><a routerLink="">Usuario</a></li>
+            <li ><a  routerLink="">Proponente</a></li>
+            <li ><a routerLink="request/request-list">Solicitud</a></li>
+            <li ><a routerLink="evaluation/evaluation-list">Evaluacion</a></li>
+            <li *ngIf="session"><a routerLink="reports/report-list">Reportes</a></li>
+            <li *ngIf="!session"><a routerLink="security/login">Login</a></li>
+            <li *ngIf="session"><a routerLink="security/logout">Logout</a></li>
+            <li *ngIf="session"><a routerLink="security/reset-password">Recuperar Contraseña</a></li>
+            <li *ngIf="session"><a routerLink="security/change-password">Cambiar Contraseña</a></li>
+            <li *ngIf="session"><a routerLink="security/user-list">Usuario</a></li>
         </ul>
     </div>
 </nav>
@@ -20,10 +20,10 @@
     <li><a routerLink="">Proponente</a></li>
     <li><a routerLink="request/request-list">Solicitud</a></li>
     <li><a routerLink="evaluation/evaluation-list">Evaluacion</a></li>
-    <li><a routerLink="">Reportes</a></li>
-    <li><a routerLink="">Login</a></li>
-    <li><a routerLink="">Logout</a></li>
-    <li><a routerLink="">Recuperar Contraseña</a></li>
-    <li><a routerLink="">Cambiar Contraseña</a></li>
-    <li><a routerLink="">Usuario</a></li>
+    <li *ngIf="session"><a routerLink="reports/report-list">Reportes</a></li>
+    <li *ngIf="!session"><a routerLink="security/login">Login</a></li>
+    <li *ngIf="session"><a routerLink="security/logout">Logout</a></li>
+    <li *ngIf="session"><a routerLink="security/reset-password">Recuperar Contraseña</a></li>
+    <li *ngIf="session"><a routerLink="security/change-password">Cambiar Contraseña</a></li>
+    <li *ngIf="session"><a routerLink="security/user-list">Usuario</a></li>
 </ul>
