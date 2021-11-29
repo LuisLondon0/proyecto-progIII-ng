@@ -29,14 +29,14 @@ export class proponentService {
       `${this.url}/proponente-trabajos`,
       {
         id: data.id,
-        document: data.documento,
-        firstName: data.primerNombre,
-        otherName: data.otroNombre,
-        firstLastName: data.primerApellido,
-        otherLastName: data.otroApellido,
-        email: data.correo,
-        phone: data.celular,
-        typeVinculationId: data.tipoVinculacionId
+        documento: data.documento,
+        primerNombre: data.primerNombre,
+        otroNombre: data.otroNombre,
+        primerApellido: data.primerApellido,
+        otroApellido: data.otroApellido,
+        correo: data.correo,
+        celular: data.celular,
+        tipoVinculacionId: data.tipoVinculacionId
       },
       {
         headers: new HttpHeaders({
@@ -54,14 +54,14 @@ export class proponentService {
       `${this.url}/proponente-trabajos/${data.id}`,
       {
         id: data.id,
-        document: data.documento,
-        firstName: data.primerNombre,
-        otherName: data.otroNombre,
-        firstLastName: data.primerApellido,
-        otherLastName: data.otroApellido,
-        email: data.correo,
-        phone: data.celular,
-        typeVinculationId: data.tipoVinculacionId
+        documento: data.documento,
+        primerNombre: data.primerNombre,
+        otroNombre: data.otroNombre,
+        primerApellido: data.primerApellido,
+        otroApellido: data.otroApellido,
+        correo: data.correo,
+        celular: data.celular,
+        tipoVinculacionId: data.tipoVinculacionId
       },
       {
         headers: new HttpHeaders({
@@ -82,7 +82,7 @@ export class proponentService {
 
   UploadFile(formData: FormData): Observable<UploadedFileModel>{
     return this.http.post<UploadedFileModel>(
-      `${this.url}/CargarImagenPrincipalProducto`,
+      `${this.url}/CargarImagenPrincipalProponente`,
       formData,
       {
         headers: new HttpHeaders({

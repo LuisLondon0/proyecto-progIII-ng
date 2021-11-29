@@ -19,7 +19,7 @@
     <input type="text" formControlName="main_image" />
     <div class="row">
       <div class="input-field col s3">
-        <input formControlName="document" id="documento" type="text">
+        <input formControlName="document" id="documento" type="number">
         <label for="documento">documento</label>
       </div>
       <div class="input-field col s3">
@@ -39,7 +39,7 @@
         <label for="otroApellido">Otro Apellido</label>
       </div>
       <div class="input-field col s3">
-        <input formControlName="phone" id="celular" type="text">
+        <input formControlName="phone" id="celular" type="number">
         <label for="celular">Celular</label>
       </div>
       <div class="input-field col s3">
@@ -47,7 +47,7 @@
         <label for="correo">correo</label>
       </div>
       <div class="input-field col s3">
-        <select id="selTypeVinculation">
+        <select id="selTypeVinculation" formControlName="typeVinculationId">
           <option *ngFor="let t of typeVinculationList" value="{{t.id}}">{{t.nombre}}</option>
         </select>
         <label>Tipo de Vinculacion</label>

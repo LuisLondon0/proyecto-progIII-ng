@@ -74,17 +74,18 @@ export class ProponentCreationComponent implements OnInit {
 
   CreateForm() {
     this.dataForm = this.fb.group({
-      document: ["", [Validators.required]],
+      document: [ [Validators.required]],
       firstName: ["", [Validators.required]],
       otherName: ["", [Validators.required]],
       firstLastName: ["", [Validators.required]],
       otherLastName: ["", [Validators.required]],
       email: ["", [Validators.required]],
-      phone: ["", [Validators.required]],
-      typeVinculationId: ["", [Validators.required]],
+      phone: [ [Validators.required]],
+      typeVinculationId: [ [Validators.required]],
       department: ["", [Validators.required]],
-      main_image:["", [Validators.required]]
+      main_image:["", [Validators.required]],
     });
+
   }
 
   CreateFormFile(){
@@ -102,8 +103,9 @@ export class ProponentCreationComponent implements OnInit {
     model.otroApellido = this.dataForm.controls["otherLastName"].value;
     model.celular = this.dataForm.controls["phone"].value;
     model.correo = this.dataForm.controls["email"].value;
-    model.tipoVinculacionId = this.dataForm.controls["typeVinculationId"].value;
+    model.tipoVinculacionId = parseInt(this.dataForm.controls["typeVinculationId"].value);
     model.main_image = this.dataForm.controls["main_image"].value;
+    console.log("holi", this.dataForm.controls["typeVinculationId"].value, model.tipoVinculacionId)
     this.service.SaveRecord(model).subscribe({
       next: (data: ProponentModel) => {
         OpenGeneralMessageModal(GeneralData.SAVED_MESSAGE);

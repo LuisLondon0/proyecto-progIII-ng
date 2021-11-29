@@ -3,7 +3,7 @@ import { DepartmentModel } from "../parameters/department.model";
 
 export class ProponentModel {
     id?: number;
-    documento?: string;
+    documento?: number;
     primerNombre?: string;
     otroNombre?: string;
     primerApellido?: string;
