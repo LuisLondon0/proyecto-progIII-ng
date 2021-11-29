@@ -7,6 +7,7 @@ import { RequestEditionComponent } from './request-edition/request-edition.compo
 import { RequestListComponent } from './request-list/request-list.component';
 import { RemoveRequestComponent } from './remove-request/remove-request.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     RequestRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class RequestModule { }

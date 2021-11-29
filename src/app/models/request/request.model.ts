@@ -7,4 +7,5 @@ export class RequestModel{
     archivoZip?: string;
     descripcion?: string;
     tipoSolicitudId?: number;
+    proponenteId?: number;
 }

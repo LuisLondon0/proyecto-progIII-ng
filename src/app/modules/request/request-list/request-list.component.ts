@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GeneralData } from 'src/app/config/general-data';
 import { RequestModel } from 'src/app/models/request/request.model';
 import { RequestService } from 'src/app/services/request/request.service';
 
@@ -9,6 +10,9 @@ import { RequestService } from 'src/app/services/request/request.service';
 })
 export class RequestListComponent implements OnInit {
 
+  pageSize: number = GeneralData.RECORDS_BY_PAGE;
+  p: number = 1;
+  total: number = 0;
   recordList: RequestModel[] = [];
   
   constructor(
@@ -23,6 +27,7 @@ export class RequestListComponent implements OnInit {
     this.service.GetRecordList().subscribe({
       next: (data: RequestModel[]) => {
         this.recordList = data;
+        this.total = this.recordList.length;
       }
     })
   }

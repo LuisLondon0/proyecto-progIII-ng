@@ -34,7 +34,8 @@ export class RequestCreationComponent implements OnInit {
       modalidadId: ["", [Validators.required]],
       areaInvestigacionId: ["", [Validators.required]],
       tipoSolicitudId: ["", [Validators.required]],
-      archivoZip: ["", []]
+      archivoZip: ["", []],
+      proponenteId: ["", [Validators.required]],
     })
   }
 
@@ -47,6 +48,7 @@ export class RequestCreationComponent implements OnInit {
     model.areaInvestigacionId = this.form.controls["areaInvestigacionId"].value;
     model.tipoSolicitudId = this.form.controls["tipoSolicitudId"].value;
     model.archivoZip = this.form.controls["archivoZip"].value;
+    model.proponenteId = this.form.controls["proponenteId"].value;
 
     this.service.SaveRecord(model).subscribe({
       next: (data: RequestModel) => {

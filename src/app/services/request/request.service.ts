@@ -23,13 +23,14 @@ export class RequestService {
   }
 
   SaveRecord(data: RequestModel): Observable<RequestModel>{
-    return this.http.post<RequestModel>(`${this.url}/solicitudes`, {
+    return this.http.post<RequestModel>(`${this.url}/solicitud-proponentes`, {
       fecha: data.fecha,
       nombreTrabajo: data.nombreTrabajo,
       descripcion: data.descripcion,
-      modalidadId: data.modalidadId,
+      modalidad: data.modalidadId,
       areaInvestigacionId: data.areaInvestigacionId,
       tipoSolicitudId: data.tipoSolicitudId,
+      proponenteId: data.proponenteId,
       //archivoZip: data.archivoZip,
     },
     {headers: new HttpHeaders({
