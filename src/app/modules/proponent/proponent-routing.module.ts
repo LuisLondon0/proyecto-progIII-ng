@@ -11,7 +11,7 @@ const routes: Routes = [
     component: ProponentCreationComponent
   },
   {
-    path: "proponent-edition",
+    path: "proponent-edition/:id",
     component: ProponentEditionComponent
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     component: ProponentListComponent
   },
   {
-    path: "remove-proponent",
+    path: "remove-proponent/:id",
     component: RemoveProponentComponent
   }
 ];

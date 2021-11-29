@@ -11,7 +11,7 @@ export class ProponentModel {
     correo?: string;
     celular?: number;
     tipoVinculacionId?: number;
-    main_image?: string;
+    foto?: string;
     tipoVinculacion?: TypeVinculationModel;
     departamento?: DepartmentModel[];
 }

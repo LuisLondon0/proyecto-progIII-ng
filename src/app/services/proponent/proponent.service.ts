@@ -12,7 +12,7 @@ import { LocalStorageService } from '../shared/local-storage.service';
 export class proponentService {
   url: string = GeneralData.MS_VINCULACION_URL;
   token: string = "";
-  filter: string = `?filter={"include":[{"relation":"department"}, {"relation":"faculty"}, {"relation":"type-vinculation"}]}`;
+  //filter: string = `?filter={"include":[{"relation":"department"},{"relation":"type-vinculation"}]}`;
 
   constructor(
     private http: HttpClient
@@ -21,7 +21,7 @@ export class proponentService {
   }
 
   GetRecordList(): Observable<ProponentModel[]> {
-    return this.http.get<ProponentModel[]>(`${this.url}/proponente-trabajos${this.filter}`);
+    return this.http.get<ProponentModel[]>(`${this.url}/proponente-trabajos`);
   }
 
   SaveRecord(data: ProponentModel): Observable<ProponentModel> {
@@ -36,6 +36,7 @@ export class proponentService {
         otroApellido: data.otroApellido,
         correo: data.correo,
         celular: data.celular,
+        foto: data.foto,
         tipoVinculacionId: data.tipoVinculacionId
       },
       {
@@ -61,6 +62,7 @@ export class proponentService {
         otroApellido: data.otroApellido,
         correo: data.correo,
         celular: data.celular,
+        foto: data.foto,
         tipoVinculacionId: data.tipoVinculacionId
       },
       {

@@ -1,35 +1,68 @@
 <div class="row">
+  <div class="col s12">
+    <div class="row">
+      <div class="col s12 center-align">
+        <img *ngIf="uploadedFile" class="default-proponent"
+          src="/assets/images/proponents/default-proponent-image.png" />
+        <img *ngIf="uploadedFile" class="default-proponent" src="{{url}}/archivo/1/{{uploadedFilename}}" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12  center-align">
+        <input class="btn btn-warning orange" type="file" name="image" (change)="OnchangeInputFile($event)" />
+        &nbsp;<button (click)="UploadImage()" class="btn">Cargar Imagen</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
   <form [formGroup]="form" class="col s12">
-    <input type="hidden" formControlName="id" />
+    <input type="text" formControlName="main_image" />
     <div class="row">
       <div class="input-field col s3">
-        <input formControlName="document" id="document" type="text">
+        <input formControlName="document" id="documento" type="number">
         <label for="documento">documento</label>
       </div>
       <div class="input-field col s3">
-        <input formControlName="firstName" id="firstName" type="text">
-        <label for="firstName">Primer Nombre</label>
+        <input formControlName="firstName" id="primerNombre" type="text">
+        <label for="primerNombre">Primer Nombre</label>
       </div>
       <div class="input-field col s3">
-        <input formControlName="otherName" id="otherName" type="text">
-        <label for="otherName">Otro Nombre</label>
+        <input formControlName="otherName" id="otroNombre" type="text">
+        <label for="primerNombre">Otro Nombre</label>
       </div>
       <div class="input-field col s3">
-        <input formControlName="firstLastName" id="firstLastName" type="text">
-        <label for="firstLastName">Primer Apellido</label>
+        <input formControlName="firstLastName" id="primerApellido" type="text">
+        <label for="primerApellido">Primer Apellido</label>
       </div>
       <div class="input-field col s3">
-        <input formControlName="phone" id="phone" type="text">
-        <label for="phone">Celular</label>
+        <input formControlName="otherLastName" id="otroApellido" type="text">
+        <label for="otroApellido">Otro Apellido</label>
       </div>
       <div class="input-field col s3">
-        <input formControlName="email" id="email" type="email">
-        <label for="email">correo</label>
+        <input formControlName="phone" id="celular" type="number">
+        <label for="celular">Celular</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="email" id="correo" type="email">
+        <label for="correo">correo</label>
+      </div>
+      <div class="input-field col s3">
+        <select id="selTypeVinculation" formControlName="typeVinculationId">
+          <option *ngFor="let t of typeVinculationList" value="{{t.id}}">{{t.nombre}}</option>
+        </select>
+        <label>Tipo de Vinculacion</label>
+      </div>
+      <div class="input-field col s6">
+        <select multiple id="selDepartment">
+          <option *ngFor="let d of departmentList" value="{{d.id}}">{{d.nombre}}</option>
+        </select>
+        <label>Departamento</label>
       </div>
     </div>
     <div class="row">
       <div class="input-field col s2">
-        <a routerLink="/parameters/proponent-list" class="btn btn-warning red">
+        <a routerLink="proponent/proponent-list" class="btn btn-warning red">
           Cancelar
         </a>
       </div>
