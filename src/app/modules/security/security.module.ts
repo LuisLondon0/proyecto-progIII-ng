@@ -11,7 +11,7 @@ import { UserEditionComponent } from './user/user-edition/user-edition.component
 import { UserListComponent } from './user/user-list/user-list.component';
 import { RemoveUserComponent } from './user/remove-user/remove-user.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @NgModule({
   declarations: [
@@ -28,7 +28,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     CommonModule,
     SecurityRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class SecurityModule { }

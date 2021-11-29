@@ -1,1 +1,42 @@
-<p>user-creation works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="nombre" id="nombre" type="text" >
+          <label for="nombre">Nombre</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="correo" id="correo" type="text" >
+          <label for="correo">Correo Electronico</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="celular" id="celular" type="text" >
+          <label for="celular">Celular</label>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="input-field col s12">
+          <input formControlName="id_rol" id="id_rol" type="text" >
+          <label for="id_rol">Rol</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s2">
+            <a routerLink="/security/user-list" class="btn btn-warning red">
+                Cancelar
+            </a>
+        </div>
+        <div class="input-field col s10">
+            <button (click)="SaveRecord()" class="btn btn-success">
+                Guardar
+            </button>
+        </div>
+      </div>
+    </form>
+  </div>
+        

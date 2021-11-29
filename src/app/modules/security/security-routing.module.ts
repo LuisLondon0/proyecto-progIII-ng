@@ -31,7 +31,7 @@ const routes: Routes = [
     component: UserCreationComponent
   },
   {
-    path:"user-edition",
+    path:"user-edition/:id",
     component: UserEditionComponent
   },
   {
@@ -39,7 +39,7 @@ const routes: Routes = [
     component: UserListComponent
   },
   {
-    path:"remove-user",
+    path:"remove-user/:id",
     component: RemoveUserComponent
   }
 ];

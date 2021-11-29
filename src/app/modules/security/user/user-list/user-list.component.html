@@ -1,1 +1,60 @@
-<p>user-list works!</p>
+<br />
+<a routerLink="/security/user-creation" class="btn btn-success">Nuevo Registro</a>
+
+<table class="table responsive-table">
+    <thead>
+        <th>
+            Id
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Correo
+        </th>
+        <th>
+            Celular
+        </th>
+        <th>
+            Rol
+        </th>
+        <th>
+            Estado
+        </th>
+        <th>
+            Acciones
+        </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of recordList | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+            <td>
+                {{r._id}}
+            </td>
+            <td>
+                {{r.nombre}}
+            </td>
+            <td>
+                {{r.correo}}
+            </td>
+            <td>
+                {{r.celular}}
+            </td>
+            <td>
+                {{r.id_rol}}
+            </td>
+            <td>
+                {{r.estado}}
+            </td>
+            <td>
+                <a routerLink="/security/user-edition/{{r._id}}" class="btn btn-warning orange" >Editar</a>
+                &nbsp;<a routerLink="/security/remove-user/{{r._id}}" class="btn btn-warning red">Eliminar</a>
+            </td>
+        
+        </tr>
+        <tr>
+            <td colspan="3">
+                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            </td>
+        </tr>
+    </tbody>
+</table>
