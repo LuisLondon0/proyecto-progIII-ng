@@ -3,7 +3,7 @@
     <div class="input-field col s12">
       <label>Está seguro de eliminar por completo el registro con la siguiente información:</label>
       <br />
-      <ul>
+      <ul class="deleteList">
         <li>
           <strong> Id: {{id}}</strong>
         </li>
@@ -24,12 +24,12 @@
   </div>
   <div class="row">
     <div class="input-field col s2">
-      <a routerLink="/proponent/proponent-list" class="btn btn-warning red">
+      <a routerLink="/proponent/proponent-list" class="btn btn-warning" style="background-color:#0dd1f2">
         Cancelar
       </a>
     </div>
     <div class="input-field col s10">
-      <button (click)="RemoveRecord()" class="btn btn-success">
+      <button (click)="RemoveRecord()" class="btn btn-success" style="background-color:#0792a9;" routerLink="/proponent/proponent-list">
         Confirmar
       </button>
     </div>

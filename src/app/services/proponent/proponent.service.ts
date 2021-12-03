@@ -37,7 +37,8 @@ export class proponentService {
         correo: data.correo,
         celular: data.celular,
         foto: data.foto,
-        tipoVinculacionId: data.tipoVinculacionId
+        tipoVinculacionId: data.tipoVinculacionId,
+        
       },
       {
         headers: new HttpHeaders({
@@ -63,7 +64,8 @@ export class proponentService {
         correo: data.correo,
         celular: data.celular,
         foto: data.foto,
-        tipoVinculacionId: data.tipoVinculacionId
+        tipoVinculacionId: data.tipoVinculacionId,
+        
       },
       {
         headers: new HttpHeaders({

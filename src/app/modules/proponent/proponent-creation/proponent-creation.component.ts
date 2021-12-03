@@ -51,7 +51,6 @@ export class ProponentCreationComponent implements OnInit {
       {
         next: (data: TypeVinculationModel[]) => {
           this.typeVinculationList = data;
-          console.log(this.typeVinculationList, "Helloox2")
           setTimeout(() => {
 
             InitSelectById("selTypeVinculation");
@@ -96,6 +95,7 @@ export class ProponentCreationComponent implements OnInit {
 
   SaveRecord() {
     let model = new ProponentModel();
+    let departmentId = 0;
     model.documento = this.dataForm.controls["document"].value;
     model.primerNombre = this.dataForm.controls["firstName"].value;
     model.otroNombre = this.dataForm.controls["otherName"].value;
@@ -105,6 +105,7 @@ export class ProponentCreationComponent implements OnInit {
     model.correo = this.dataForm.controls["email"].value;
     model.tipoVinculacionId = parseInt(this.dataForm.controls["typeVinculationId"].value);
     model.foto = this.dataForm.controls["main_image"].value;
+    console.log(model, departmentId, "Holaa")
     this.service.SaveRecord(model).subscribe({
       next: (data: ProponentModel) => {
         OpenGeneralMessageModal(GeneralData.SAVED_MESSAGE);

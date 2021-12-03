@@ -1,0 +1,12 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tableList {
+  border-right: #e8eaf6 2px solid;
+  text-align: center;
+  background: #d8f4ff;
+}

@@ -2,9 +2,8 @@
   <div class="col s12">
     <div class="row">
       <div class="col s12 center-align">
-        <img *ngIf="uploadedFile" class="default-proponent"
-          src="/assets/images/proponents/default-proponent-image.png" />
-        <img *ngIf="uploadedFile" class="default-proponent" src="{{url}}/archivo/1/{{uploadedFilename}}" />
+        <img *ngIf="!uploadedFile" class="default-proponent" src="/assets/images/proponents/user.jpg" style="width: 100px; height: 100px; margin-top: 50px;"/>
+        <img *ngIf="uploadedFile" class="default-proponent" src="{{url}}/archivo/1/{{uploadedFilename}}" style="width: 100px; height: 100px; margin-top: 50px;"/>
       </div>
     </div>
     <div class="row">
@@ -62,12 +61,12 @@
     </div>
     <div class="row">
       <div class="input-field col s2">
-        <a routerLink="proponent/proponent-list" class="btn btn-warning red">
+        <a routerLink="/proponent/proponent-list" class="btn btn-warning " style="background-color:#0dd1f2; font-size: medium;">
           Cancelar
         </a>
       </div>
       <div class="input-field col s10">
-        <button (click)="SaveRecord()" class="btn btn-success">
+        <button (click)="SaveRecord()" class="btn btn-success" style="background-color:#0792a9; font-size: medium;" routerLink="/proponent/proponent-list">
           Guardar
         </button>
       </div>

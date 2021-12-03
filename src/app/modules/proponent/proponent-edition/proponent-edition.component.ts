@@ -41,8 +41,9 @@ export class ProponentEditionComponent implements OnInit {
     this.CreateForm();
     this.SearchRecord();
     this.GetOptionsToSelects();
-
+    this.CreateFormFile();
   }
+
 
   CreateForm() {
     this.form = this.fb.group({
@@ -57,6 +58,12 @@ export class ProponentEditionComponent implements OnInit {
       typeVinculationId: ["", [Validators.required]],
       department: ["", [Validators.required]],
       main_image:["", [Validators.required]]
+    });
+  }
+
+  CreateFormFile(){
+    this.formFile = this.fb.group({
+      file:["", []]
     });
   }
 
@@ -121,7 +128,7 @@ OnchangeInputFile(event: any){
     }
   }
 
-  GetOptionsToSelects() {
+GetOptionsToSelects() {
     this.typeVinculationService.GetRecordList().subscribe(
       {
         next: (data: TypeVinculationModel[]) => {
