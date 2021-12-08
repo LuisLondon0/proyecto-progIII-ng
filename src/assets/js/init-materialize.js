@@ -9,3 +9,8 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0.8
     });
 });
+
+function InitSelectById(id) {
+    var elems = document.querySelector('#' + id);
+    var instances = M.FormSelect.init(elems, {});
+}

@@ -11,6 +11,7 @@
         <th>Modalidad</th>
         <th>Area de Investigacion</th>
         <th>Tipo de Solicitud</th>
+        <th>Comites</th>
         <th>Acciones</th>
     </thead>
     <tbody>
@@ -20,9 +21,14 @@
             <td>{{r.nombreTrabajo}}</td>
             <td>{{r.descripcion}}</td>
             <td>{{r.archivoZip}}</td>
-            <td>{{r.modalidadId}}</td>
+            <td>{{r.modalidad?.nombre}}</td>
             <td>{{r.areaInvestigacionId}}</td>
-            <td>{{r.tipoSolicitudId}}</td>
+            <td>{{r.tipoSolicitud?.nombre}}</td>
+            <td>
+                <ul>
+                    <li *ngFor="let c of r.comites">{{c.nombre}}</li>
+                </ul>
+            </td>
             <td>
                 <a routerLink="/request/request-edition/{{r.id}}" class="btn btn-warning purple">Editar</a> &nbsp;
                 <a routerLink="/request/remove-request/{{r.id}}" class="btn btn-warning red">Eliminar</a>

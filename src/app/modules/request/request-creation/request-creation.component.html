@@ -1,4 +1,14 @@
 <div class="row">
+    <div class="col s12">
+        <div class="row">
+            <div class="col s12 center-align">
+                <input class="btn btn-warning blue" type="file" value="Seleccionar" (change)="OnChangeInputFile($event)"> &nbsp;
+                <button class="btn" (click)="UploadFile()">Cargar Archivo</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
     <form [formGroup]="form" class="col s12">
         <div class="row">
             <div class="input-field col s3">
@@ -14,8 +24,10 @@
                 <label for="descripcion">Descripcion</label>
             </div>
             <div class="input-field col s3">
-                <input formControlName="modalidadId" id="modalidadId" type="number">
-                <label for="modalidadId">Modalidad</label>
+                <select id="selModality" formControlName="modalidadId">
+                    <option *ngFor="let m of modalityList" value="{{m.id}}">{{m.nombre}}</option>
+                </select>
+                <label>Modalidad</label>
             </div>
         </div>
         <div class="row">
@@ -24,13 +36,22 @@
                 <label for="areaInvestigacionId">Linea de Investigacion</label>
             </div>
             <div class="input-field col s3">
-                <input formControlName="tipoSolicitudId" id="tipoSolicitudId" type="number">
-                <label for="tipoSolicitudId">Tipo de solicitud</label>
+                <select id="selTypeOfRequest" formControlName="tipoSolicitudId">
+                    <option *ngFor="let t of typeOfRequestList" value="{{t.id}}">{{t.nombre}}</option>
+                </select>
+                <label>Tipo de Solicitud</label>
+            </div>
+            <div class="input-field col s3">
+                <select multiple id="selCommittee" formControlName="comites">
+                    <option *ngFor="let c of committeeList" value="{{c.id}}">{{c.nombre}}</option>
+                </select>
+                <label>Comites</label>
             </div>
             <div class="input-field col s3">
                 <input formControlName="proponenteId" id="proponenteId" type="number">
                 <label for="proponenteId">Proponente</label>
             </div>
+            <input type="text" formControlName="archivoZip">
         </div>
         <div class="row">
             <div class="input-field col s2">

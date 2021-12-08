@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { RequestModel } from 'src/app/models/request/request.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { UploadedFileModel } from 'src/app/models/request/uploaded.file.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,6 +11,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 export class RequestService {
   url: string = GeneralData.MS_REQUEST_URL;
   token: string = "";
+  filter: string = `?filter={"include":[{"relation":"modalidad"},{"relation":"tipoSolicitud"},{"relation":"comites"}]}`;
 
   constructor(
     private http: HttpClient
@@ -19,7 +21,7 @@ export class RequestService {
    }
 
   GetRecordList(): Observable<RequestModel[]>{
-    return this.http.get<RequestModel[]>(`${this.url}/solicitudes`)
+    return this.http.get<RequestModel[]>(`${this.url}/solicitudes${this.filter}`)
   }
 
   SaveRecord(data: RequestModel): Observable<RequestModel>{
@@ -31,7 +33,16 @@ export class RequestService {
       areaInvestigacionId: data.areaInvestigacionId,
       tipoSolicitudId: data.tipoSolicitudId,
       proponenteId: data.proponenteId,
-      //archivoZip: data.archivoZip,
+      archivoZip: data.archivoZip,
+    },
+    {headers: new HttpHeaders({
+      Authorization: `Bearer ${this.token}`
+    })})
+  }
+
+  SaveCommittees(id: number, data: number[]): Observable<boolean>{
+    return this.http.post<boolean>(`${this.url}/relacionar-comites-a-solicitud/${id}`, {
+      comites: data,
     },
     {headers: new HttpHeaders({
       Authorization: `Bearer ${this.token}`
@@ -64,4 +75,11 @@ export class RequestService {
       Authorization: `Bearer ${this.token}`
     })})
   }
+
+UploadFile(formData: FormData): Observable<UploadedFileModel>{
+  return this.http.post<UploadedFileModel>(`${this.url}/CargarArchivoZip`, formData,
+  {headers: new HttpHeaders({
+    Authorization: `Bearer ${this.token}`
+  })})
+}
 }
