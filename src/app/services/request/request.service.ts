@@ -4,6 +4,7 @@ import { GeneralData } from 'src/app/config/general-data';
 import { RequestModel } from 'src/app/models/request/request.model';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import { UploadedFileModel } from 'src/app/models/request/uploaded.file.model';
+import { RequestProponentModel } from 'src/app/models/request/request-proponent.model';
 
 @Injectable({
   providedIn: 'root'
@@ -22,6 +23,10 @@ export class RequestService {
 
   GetRecordList(): Observable<RequestModel[]>{
     return this.http.get<RequestModel[]>(`${this.url}/solicitudes${this.filter}`)
+  }
+
+  GetProponents(id: number): Observable<RequestProponentModel[]>{
+    return this.http.get<RequestProponentModel[]>(`${this.url}/solicitud-proponentes?filter={"where":{"solicitudId":${id}}}`)
   }
 
   SaveRecord(data: RequestModel): Observable<RequestModel>{

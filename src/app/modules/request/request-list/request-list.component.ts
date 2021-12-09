@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralData } from 'src/app/config/general-data';
+import { RequestProponentModel } from 'src/app/models/request/request-proponent.model';
 import { RequestModel } from 'src/app/models/request/request.model';
 import { RequestService } from 'src/app/services/request/request.service';
 
@@ -30,5 +31,25 @@ export class RequestListComponent implements OnInit {
         this.total = this.recordList.length;
       }
     })
+  }
+
+  GetProponents(){
+    for(let r of this.recordList){
+      if(r.id){
+        //let proponets : ProponentModel[]
+        this.service.GetProponents(r.id).subscribe({
+          next: (data: RequestProponentModel[]) => {
+            for(let rp of data){
+              //this.proponentService.SearchRecord(rp.proponenteId).subscribe({
+                //next: (data: ProponentModel[]) => {
+                    //proponents.push(data)
+                //}
+              //})
+            }
+            //r.proponents = proponents
+          }
+        })
+      }
+    }
   }
 }

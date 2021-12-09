@@ -15,4 +15,5 @@ export class RequestModel{
     tipoSolicitud?: TypeOfRequestModel;
     modalidad?: ModalityModel;
     comites?: CommitteeModel[];
+    //proponents?: ProponentModel[];
 }
