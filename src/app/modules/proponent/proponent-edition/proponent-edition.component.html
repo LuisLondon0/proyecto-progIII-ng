@@ -1,0 +1,75 @@
+<div class="row">
+  <div class="col s12">
+    <div class="row">
+      <div class="col s12 center-align">
+        <img *ngIf="!uploadedFile" class="default-proponent" src="/assets/images/proponents/user.jpg" style="width: 100px; height: 100px; margin-top: 50px;"/>
+        <img *ngIf="uploadedFile" class="default-proponent" src="{{url}}/archivo/1/{{uploadedFilename}}" style="width: 100px; height: 100px; margin-top: 50px;"/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12  center-align">
+        <input class="btn btn-warning orange" type="file" name="image" (change)="OnchangeInputFile($event)" />
+        &nbsp;<button (click)="UploadImage()" class="btn">Cargar Imagen</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <form [formGroup]="form" class="col s12">
+    <input type="text" formControlName="main_image" />
+    <div class="row">
+      <div class="input-field col s3">
+        <input formControlName="document" id="documento" type="number">
+        <label for="documento">documento</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="firstName" id="primerNombre" type="text">
+        <label for="primerNombre">Primer Nombre</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="otherName" id="otroNombre" type="text">
+        <label for="primerNombre">Otro Nombre</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="firstLastName" id="primerApellido" type="text">
+        <label for="primerApellido">Primer Apellido</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="otherLastName" id="otroApellido" type="text">
+        <label for="otroApellido">Otro Apellido</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="phone" id="celular" type="number">
+        <label for="celular">Celular</label>
+      </div>
+      <div class="input-field col s3">
+        <input formControlName="email" id="correo" type="email">
+        <label for="correo">correo</label>
+      </div>
+      <div class="input-field col s3">
+        <select id="selTypeVinculation" formControlName="typeVinculationId">
+          <option *ngFor="let t of typeVinculationList" value="{{t.id}}">{{t.nombre}}</option>
+        </select>
+        <label>Tipo de Vinculacion</label>
+      </div>
+      <div class="input-field col s6">
+        <select multiple id="selDepartment">
+          <option *ngFor="let d of departmentList" value="{{d.id}}">{{d.nombre}}</option>
+        </select>
+        <label>Departamento</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s2">
+        <a routerLink="/proponent/proponent-list" class="btn btn-warning " style="background-color:#0dd1f2; font-size: medium;">
+          Cancelar
+        </a>
+      </div>
+      <div class="input-field col s10">
+        <button (click)="SaveRecord()" class="btn btn-success" style="background-color:#0792a9; font-size: medium;" routerLink="/proponent/proponent-list">
+          Guardar
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

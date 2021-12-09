@@ -1,0 +1,87 @@
+<br />
+<a routerLink="/proponent/proponent-creation" class="btn btn-success">Nuevo Registro</a>
+
+<table class="table responsive-table" style="margin-top: 5%;">
+  <thead>
+    <th>
+      Id
+    </th>
+    <th>
+      Documento
+    </th>
+    <th>
+      Primer Nombre
+    </th>
+    <th>
+      Otro Nombre
+    </th>
+    <th>
+      Primer Apellido
+    </th>
+    <th>
+      Otro Apellido
+    </th>
+    <th>
+      Celular
+    </th>
+    <th>
+      Correo
+    </th>
+    <th>
+      Tipo Vinculacion
+    </th>
+    <th>
+      Departamento
+    </th>
+    <th>
+      Acciones
+    </th>
+  </thead>
+  <tbody >
+    <tr *ngFor="let r of recordList | paginate: { itemsPerPage: pageSize, currentPage: p, totalItems: total }" >
+      <td class="tableList">
+        {{r.id}}
+      </td>
+      <td class="tableList">
+        {{r.documento}}
+      </td>
+      <td class="tableList">
+        {{r.primerNombre}}
+      </td>
+      <td class="tableList">
+        {{r.otroNombre}}
+      </td>
+      <td class="tableList">
+        {{r.primerApellido}}
+      </td>
+      <td class="tableList">
+        {{r.otroApellido}}
+      </td>
+      <td class="tableList">
+        {{r.celular}}
+      </td>
+      <td class="tableList">
+        {{r.correo}}
+      </td>
+      <td class="tableList">
+        {{r.tipoVinculacionId}}
+      </td>
+      <td class="tableList">
+        <ul>
+          <li *ngFor="let d of r.departamento">{{d.nombre}}</li>
+        </ul>
+      </td>
+      <td>
+        <a routerLink="/proponent/proponent-edition/{{r.id}}" class="btn btn-warning" style="background-color:#0dd1f2;">Editar</a>
+        &nbsp;<a routerLink="/proponent/remove-proponent/{{r.id}}" class="btn btn-warning" style="background-color:#0792a9;">Eliminar</a>
+      </td>
+
+    </tr>
+    <tr>
+      <td colspan="11">
+        <pagination-controls class="pagination" (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente">
+        </pagination-controls>
+      </td>
+    </tr>
+  </tbody>
+</table>

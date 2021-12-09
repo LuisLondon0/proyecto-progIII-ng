@@ -3,10 +3,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { FacultyModel } from 'src/app/models/parameters/faculty.model';
+import { LocalStorageService } from '../shared/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class FacultyService {
   url: string = GeneralData.MS_BONDING_URL;
   token: string = "";
@@ -52,3 +54,4 @@ export class FacultyService {
     })})
   }
 }
+

@@ -13,10 +13,10 @@ const routes: Routes = [
     pathMatch: "full",
     redirectTo: "/home"
   },
-  {
+  /*{
     path: "security",
     loadChildren: () => import("./modules/security/security.module").then(x => x.SecurityModule)
-  },
+  },*/
   {
     path: "evaluation",
     loadChildren: () => import("./modules/evaluation/evaluation.module").then(x => x.EvaluationModule)

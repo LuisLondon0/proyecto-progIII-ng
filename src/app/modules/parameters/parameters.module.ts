@@ -38,6 +38,7 @@ import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
+
 @NgModule({
   declarations: [
     BondingCreationComponent,

@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="row">
+    <div class="input-field col s12">
+      <label>Está seguro de eliminar por completo el registro con la siguiente información:</label>
+      <br />
+      <ul class="deleteList">
+        <li>
+          <strong> Id: {{id}}</strong>
+        </li>
+        <li>
+          <strong>  Primer Nombre: {{firstName}}</strong>
+        </li>
+        <li>
+          <strong> Otro Nombre: {{otherName}}</strong>
+        </li>
+        <li>
+          <strong> Primer Apellido: {{firstLastName}}</strong>
+        </li>
+        <li>
+          <strong> otro Apellido: {{otherLastName}}</strong>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col s2">
+      <a routerLink="/proponent/proponent-list" class="btn btn-warning" style="background-color:#0dd1f2">
+        Cancelar
+      </a>
+    </div>
+    <div class="input-field col s10">
+      <button (click)="RemoveRecord()" class="btn btn-success" style="background-color:#0792a9;" routerLink="/proponent/proponent-list">
+        Confirmar
+      </button>
+    </div>
+  </div>
+</div>
