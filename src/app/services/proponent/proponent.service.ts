@@ -10,7 +10,7 @@ import { LocalStorageService } from '../shared/local-storage.service';
   providedIn: 'root'
 })
 export class proponentService {
-  url: string = GeneralData.MS_VINCULACION_URL;
+  url: string = GeneralData.MS_BONDING_URL;
   token: string = "";
   //filter: string = `?filter={"include":[{"relation":"department"},{"relation":"type-vinculation"}]}`;
 

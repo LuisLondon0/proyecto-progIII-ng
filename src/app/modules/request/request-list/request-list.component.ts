@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { GeneralData } from 'src/app/config/general-data';
+import { LineOfResearchModel } from 'src/app/models/parameters/line-of-research.model';
+import { ProponentModel } from 'src/app/models/proponent/proponent.model';
 import { RequestProponentModel } from 'src/app/models/request/request-proponent.model';
 import { RequestModel } from 'src/app/models/request/request.model';
+import { LineOfResearchService } from 'src/app/services/parameters/line-of-research.service';
+import { proponentService } from 'src/app/services/proponent/proponent.service';
 import { RequestService } from 'src/app/services/request/request.service';
 
 @Component({
@@ -17,7 +21,9 @@ export class RequestListComponent implements OnInit {
   recordList: RequestModel[] = [];
   
   constructor(
-    private service: RequestService
+    private service: RequestService,
+    private proponentService: proponentService,
+    private lineOfResearchService: LineOfResearchService
   ) { }
 
   ngOnInit(): void {
@@ -29,6 +35,8 @@ export class RequestListComponent implements OnInit {
       next: (data: RequestModel[]) => {
         this.recordList = data;
         this.total = this.recordList.length;
+        this.GetLineOfResearch()
+        this.GetProponents();
       }
     })
   }
@@ -36,19 +44,33 @@ export class RequestListComponent implements OnInit {
   GetProponents(){
     for(let r of this.recordList){
       if(r.id){
-        //let proponets : ProponentModel[]
+        let proponents : ProponentModel[] = []
         this.service.GetProponents(r.id).subscribe({
           next: (data: RequestProponentModel[]) => {
             for(let rp of data){
-              //this.proponentService.SearchRecord(rp.proponenteId).subscribe({
-                //next: (data: ProponentModel[]) => {
-                    //proponents.push(data)
-                //}
-              //})
+              if(rp.proponenteId){
+                this.proponentService.SearchRecord(rp.proponenteId).subscribe({
+                  next: (d: ProponentModel) => {
+                      proponents.push(d)
+                  }
+                })
+              }
             }
-            //r.proponents = proponents
+            r.proponents = proponents
           }
         })
+      }
+    }
+  }
+
+  GetLineOfResearch(){
+    for(let r of this.recordList){
+      if(r.areaInvestigacionId){
+        this.lineOfResearchService.SearchRecord(r.areaInvestigacionId).subscribe({
+                  next: (data: LineOfResearchModel) => {
+                      r.areaInvestigacion = data
+                  }
+                })
       }
     }
   }

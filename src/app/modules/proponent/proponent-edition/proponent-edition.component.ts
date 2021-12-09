@@ -2,12 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
-import { DepartmentModel } from 'src/app/models/parameters/department.model';
-import { TypeVinculationModel } from 'src/app/models/parameters/type-vinculation.model';
+import { BondingModel } from 'src/app/models/parameters/bonding.model';
 import { ProponentModel } from 'src/app/models/proponent/proponent.model';
 import { UploadedFileModel } from 'src/app/models/proponent/uploaded.file.model';
-import { departmentService } from 'src/app/services/parameters/department.service';
-import { typeVinculationService } from 'src/app/services/parameters/type-vinculation.service';
+import { BondingService } from 'src/app/services/parameters/bonding.service';
 import { proponentService } from 'src/app/services/proponent/proponent.service';
 
 declare const OpenGeneralMessageModal: any;
@@ -20,21 +18,21 @@ declare const InitSelectById: any;
 })
 export class ProponentEditionComponent implements OnInit {
 
-  departmentList: DepartmentModel[] = [];
-  typeVinculationList: TypeVinculationModel[] = [];
+  //departmentList: DepartmentModel[] = [];
+  bondingList: BondingModel[] = [];
   form: FormGroup = new FormGroup({});
   formFile: FormGroup = new FormGroup({});
   uploadedFilename?: string = "";
   uploadedFile: boolean = false;
-  url: string= GeneralData.MS_VINCULACION_URL;
+  url: string= GeneralData.MS_BONDING_URL;
 
   constructor(
     private fb: FormBuilder,
     private router: Router,
     private service: proponentService,
     private route: ActivatedRoute,
-    private typeVinculationService: typeVinculationService,
-    private departmentService: departmentService
+    private bondingService: BondingService,
+    //private departmentService: departmentService
   ) { }
 
   ngOnInit(): void {
@@ -129,28 +127,28 @@ OnchangeInputFile(event: any){
   }
 
 GetOptionsToSelects() {
-    this.typeVinculationService.GetRecordList().subscribe(
+    this.bondingService.GetRecordList().subscribe(
       {
-        next: (data: TypeVinculationModel[]) => {
-          this.typeVinculationList = data;
+        next: (data: BondingModel[]) => {
+          this.bondingList = data;
           setTimeout(() => {
 
-            InitSelectById("selTypeVinculation");
+            InitSelectById("selBonding");
           }, 100);
         }
       }
     );
 
-    this.departmentService.GetRecordList().subscribe(
-      {
-        next: (data: DepartmentModel[]) => {
-          this.departmentList = data;
-          setTimeout(() => {
-            InitSelectById("selDepartment");
-          }, 100);
-        }
-      }
-    );
+    // this.departmentService.GetRecordList().subscribe(
+    //   {
+    //     next: (data: DepartmentModel[]) => {
+    //       this.departmentList = data;
+    //       setTimeout(() => {
+    //         InitSelectById("selDepartment");
+    //       }, 100);
+    //     }
+    //   }
+    // );
   }
 
 }

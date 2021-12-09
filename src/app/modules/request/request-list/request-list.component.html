@@ -12,6 +12,7 @@
         <th>Area de Investigacion</th>
         <th>Tipo de Solicitud</th>
         <th>Comites</th>
+        <th>Proponentes</th>
         <th>Acciones</th>
     </thead>
     <tbody>
@@ -22,11 +23,16 @@
             <td>{{r.descripcion}}</td>
             <td>{{r.archivoZip}}</td>
             <td>{{r.modalidad?.nombre}}</td>
-            <td>{{r.areaInvestigacionId}}</td>
+            <td>{{r.areaInvestigacion?.nombre}}</td>
             <td>{{r.tipoSolicitud?.nombre}}</td>
             <td>
                 <ul>
                     <li *ngFor="let c of r.comites">{{c.nombre}}</li>
+                </ul>
+            </td>
+            <td>
+                <ul>
+                    <li *ngFor="let p of r.proponents">{{p.primerNombre}} {{p.primerApellido}}</li>
                 </ul>
             </td>
             <td>

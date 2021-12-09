@@ -1,5 +1,4 @@
-import { TypeVinculationModel } from "../parameters/type-vinculation.model";
-import { DepartmentModel } from "../parameters/department.model";
+import { BondingModel } from "../parameters/bonding.model";
 
 export class ProponentModel {
     id?: number;
@@ -12,6 +11,6 @@ export class ProponentModel {
     celular?: number;
     tipoVinculacionId?: number;
     foto?: string;
-    tipoVinculacion?: TypeVinculationModel;
-    departamento?: DepartmentModel[];
+    tipoVinculacion?: BondingModel;
+    //departamento?: DepartmentModel[];
 }

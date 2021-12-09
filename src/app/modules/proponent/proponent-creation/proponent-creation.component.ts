@@ -2,13 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
-import { TypeVinculationModel } from 'src/app/models/parameters/type-vinculation.model';
-import { DepartmentModel } from 'src/app/models/parameters/department.model';
 import { ProponentModel } from 'src/app/models/proponent/proponent.model';
 import { UploadedFileModel } from 'src/app/models/proponent/uploaded.file.model';
 import { proponentService } from 'src/app/services/proponent/proponent.service';
-import { typeVinculationService } from 'src/app/services/parameters/type-vinculation.service';
-import { departmentService } from 'src/app/services/parameters/department.service';
+import { BondingService } from 'src/app/services/parameters/bonding.service';
+import { BondingModel } from 'src/app/models/parameters/bonding.model';
 //import { BrandService } from 'src/app/services/parameters/typeVinculation.service';
 //import { CategoryService } from 'src/app/services/parameters/department.service';
 //import { ProponentService } from 'src/app/services/proponent/proponent.service';
@@ -23,11 +21,11 @@ declare const InitSelectById: any;
 })
 export class ProponentCreationComponent implements OnInit {
 
-  departmentList: DepartmentModel[] = [];
-  typeVinculationList: TypeVinculationModel[] = [];
+  //departmentList: DepartmentModel[] = [];
+  bondingList: BondingModel[] = [];
   dataForm: FormGroup = new FormGroup({});
   formFile: FormGroup = new FormGroup({});
-  url: string= GeneralData.MS_VINCULACION_URL;
+  url: string= GeneralData.MS_BONDING_URL;
   uploadedFilename?: string = "";
   uploadedFile: boolean = false;
 
@@ -35,8 +33,7 @@ export class ProponentCreationComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private service: proponentService,
-    private typeVinculationService: typeVinculationService,
-    private departmentService: departmentService
+    private bondingService: BondingService,
   ) { }
 
   ngOnInit(): void {
@@ -47,28 +44,28 @@ export class ProponentCreationComponent implements OnInit {
   }
 
   GetOptionsToSelects() {
-    this.typeVinculationService.GetRecordList().subscribe(
+    this.bondingService.GetRecordList().subscribe(
       {
-        next: (data: TypeVinculationModel[]) => {
-          this.typeVinculationList = data;
+        next: (data: BondingModel[]) => {
+          this.bondingList = data;
           setTimeout(() => {
 
-            InitSelectById("selTypeVinculation");
+            InitSelectById("selBonding");
           }, 100);
         }
       }
     );
 
-    this.departmentService.GetRecordList().subscribe(
-      {
-        next: (data: DepartmentModel[]) => {
-          this.departmentList = data;
-          setTimeout(() => {
-            InitSelectById("selDepartment");
-          }, 100);
-        }
-      }
-    );
+    //this.departmentService.GetRecordList().subscribe(
+    //  {
+    //    next: (data: DepartmentModel[]) => {
+    //      this.departmentList = data;
+    //      setTimeout(() => {
+    //        InitSelectById("selDepartment");
+    //      }, 100);
+    //    }
+    //  }
+    //);
   }
 
   CreateForm() {

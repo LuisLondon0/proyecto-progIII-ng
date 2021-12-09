@@ -1,6 +1,8 @@
 import { CommitteeModel } from "../parameters/committee.model";
+import { LineOfResearchModel } from "../parameters/line-of-research.model";
 import { ModalityModel } from "../parameters/modality.model";
 import { TypeOfRequestModel } from "../parameters/type-of-request.model";
+import { ProponentModel } from "../proponent/proponent.model";
 
 export class RequestModel{
     id?: number;
@@ -15,5 +17,6 @@ export class RequestModel{
     tipoSolicitud?: TypeOfRequestModel;
     modalidad?: ModalityModel;
     comites?: CommitteeModel[];
-    //proponents?: ProponentModel[];
+    proponents?: ProponentModel[];
+    areaInvestigacion?: LineOfResearchModel;
 }
