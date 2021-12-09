@@ -1,1 +1,22 @@
-<p>type-of-request-creation works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="nombre" id="nombre" type="text">
+                <label for="nombre">Nombre</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="formato" id="formato" type="text">
+                <label for="formato">Formato</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/parameters/type-of-request-list" class="btn btn-danger red">Cancelar</a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-danger green">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -34,6 +34,8 @@ import { JuryCreationComponent } from './jury/jury-creation/jury-creation.compon
 import { JuryEditionComponent } from './jury/jury-edition/jury-edition.component';
 import { JuryListComponent } from './jury/jury-list/jury-list.component';
 import { RemoveJuryComponent } from './jury/remove-jury/remove-jury.component';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -73,7 +75,10 @@ import { RemoveJuryComponent } from './jury/remove-jury/remove-jury.component';
   ],
   imports: [
     CommonModule,
-    ParametersRoutingModule
+    ParametersRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class ParametersModule { }

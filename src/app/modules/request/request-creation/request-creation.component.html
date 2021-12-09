@@ -1,1 +1,65 @@
-<p>request-creation works!</p>
+<div class="row">
+    <div class="col s12">
+        <div class="row">
+            <div class="col s12 center-align">
+                <input class="btn btn-warning blue" type="file" value="Seleccionar" (change)="OnChangeInputFile($event)"> &nbsp;
+                <button class="btn" (click)="UploadFile()">Cargar Archivo</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="fecha" id="fecha" type="text">
+                <label for="fecha">Fecha</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="nombreTrabajo" id="nombreTrabajo" type="text">
+                <label for="nombreTrabajo">Nombre del Trabajo</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="descripcion" id="descripcion" type="text">
+                <label for="descripcion">Descripcion</label>
+            </div>
+            <div class="input-field col s3">
+                <select id="selModality" formControlName="modalidadId">
+                    <option *ngFor="let m of modalityList" value="{{m.id}}">{{m.nombre}}</option>
+                </select>
+                <label>Modalidad</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="areaInvestigacionId" id="areaInvestigacionId" type="number">
+                <label for="areaInvestigacionId">Linea de Investigacion</label>
+            </div>
+            <div class="input-field col s3">
+                <select id="selTypeOfRequest" formControlName="tipoSolicitudId">
+                    <option *ngFor="let t of typeOfRequestList" value="{{t.id}}">{{t.nombre}}</option>
+                </select>
+                <label>Tipo de Solicitud</label>
+            </div>
+            <div class="input-field col s3">
+                <select multiple id="selCommittee" formControlName="comites">
+                    <option *ngFor="let c of committeeList" value="{{c.id}}">{{c.nombre}}</option>
+                </select>
+                <label>Comites</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="proponenteId" id="proponenteId" type="number">
+                <label for="proponenteId">Proponente</label>
+            </div>
+            <input type="text" formControlName="archivoZip">
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/request/request-list" class="btn btn-danger red">Cancelar</a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-danger green">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
