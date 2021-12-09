@@ -1,1 +1,45 @@
-<p>request-edition works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <input type="hidden" formControlName="id" />
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="fecha" id="fecha" type="text">
+                <label for="fecha" class="active">Fecha</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="nombreTrabajo" id="nombreTrabajo" type="text">
+                <label for="nombreTrabajo" class="active">Nombre del Trabajo</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="descripcion" id="descripcion" type="text">
+                <label for="descripcion" class="active">Descripcion</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="modalidadId" id="modalidadId" type="number">
+                <label for="modalidadId" class="active">Modalidad</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="areaInvestigacionId" id="areaInvestigacionId" type="number">
+                <label for="areaInvestigacionId" class="active">Linea de Investigacion</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="tipoSolicitudId" id="tipoSolicitudId" type="number">
+                <label for="tipoSolicitudId" class="active">Tipo de solicitud</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="archivoZip" id="archivoZip" type="text">
+                <label for="archivoZip" class="active">ArchivoZip</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/request/request-list" class="btn btn-danger red">Cancelar</a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="EditRecord()" class="btn btn-danger green">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>

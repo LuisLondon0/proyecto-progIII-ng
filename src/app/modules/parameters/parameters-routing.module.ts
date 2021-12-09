@@ -40,7 +40,7 @@ const routes: Routes = [
     component: BondingCreationComponent
   },
   {
-    path: "bonding-edition",
+    path: "bonding-edition/:id",
     component: BondingEditionComponent
   },
   {
@@ -48,7 +48,7 @@ const routes: Routes = [
     component: BondingListComponent
   },
   {
-    path: "remove-bonding",
+    path: "remove-bonding/:id",
     component: RemoveBondingComponent
   },
   {
@@ -56,7 +56,7 @@ const routes: Routes = [
     component: CommitteeCreationComponent
   },
   {
-    path: "committee-edition",
+    path: "committee-edition/:id",
     component: CommitteeEditionComponent
   },
   {
@@ -64,7 +64,7 @@ const routes: Routes = [
     component: CommitteeListComponent
   },
   {
-    path: "remove-committee",
+    path: "remove-committee/:id",
     component: RemoveCommitteeComponent
   },
   {
@@ -72,7 +72,7 @@ const routes: Routes = [
     component: DepartmentCreationComponent
   },
   {
-    path: "department-edition",
+    path: "department-edition/:id",
     component: DepartmentEditionComponent
   },
   {
@@ -80,7 +80,7 @@ const routes: Routes = [
     component: DepartmentListComponent
   },
   {
-    path: "remove-department",
+    path: "remove-department/:id",
     component: RemoveDepartmentComponent
   },
   {
@@ -88,7 +88,7 @@ const routes: Routes = [
     component: FacultyCreationComponent
   },
   {
-    path: "faculty-edition",
+    path: "faculty-edition/:id",
     component: FacultyEditionComponent
   },
   {
@@ -96,7 +96,7 @@ const routes: Routes = [
     component: FacultyListComponent
   },
   {
-    path: "remove-faculty",
+    path: "remove-faculty/:id",
     component: RemoveFacultyComponent
   },
   {
@@ -104,7 +104,7 @@ const routes: Routes = [
     component: JuryCreationComponent
   },
   {
-    path: "jury-edition",
+    path: "jury-edition/:id",
     component: JuryEditionComponent
   },
   {
@@ -112,7 +112,7 @@ const routes: Routes = [
     component: JuryListComponent
   },
   {
-    path: "remove-jury",
+    path: "remove-jury/:id",
     component: RemoveJuryComponent
   },
   {
@@ -120,7 +120,7 @@ const routes: Routes = [
     component: LineOfResearchCreationComponent
   },
   {
-    path: "line-of-research-edition",
+    path: "line-of-research-edition/:id",
     component: LineOfResearchEditionComponent
   },
   {
@@ -128,7 +128,7 @@ const routes: Routes = [
     component: LineOfResearchListComponent
   },
   {
-    path: "remove-line-of-research",
+    path: "remove-line-of-research/:id",
     component: RemoveLineOfResearchComponent
   },
   {
@@ -136,7 +136,7 @@ const routes: Routes = [
     component: ModalityCreationComponent
   },
   {
-    path: "modality-edition",
+    path: "modality-edition/:id",
     component: ModalityEditionComponent
   },
   {
@@ -144,7 +144,7 @@ const routes: Routes = [
     component: ModalityListComponent
   },
   {
-    path: "remove-modality",
+    path: "remove-modality/:id",
     component: RemoveModalityComponent
   },
   {
@@ -152,7 +152,7 @@ const routes: Routes = [
     component: TypeOfRequestCreationComponent
   },
   {
-    path: "type-of-request-edition",
+    path: "type-of-request-edition/:id",
     component: TypeOfRequestEditionComponent
   },
   {
@@ -160,7 +160,7 @@ const routes: Routes = [
     component: TypeOfRequestListComponent
   },
   {
-    path: "remove-type-of-request",
+    path: "remove-type-of-request/:id",
     component: RemoveTypeOfRequestComponent
   },
 ];

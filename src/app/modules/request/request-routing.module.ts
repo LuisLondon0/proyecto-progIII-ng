@@ -11,7 +11,7 @@ const routes: Routes = [
     component: RequestCreationComponent
   },
   {
-    path: "request-edition",
+    path: "request-edition/:id",
     component: RequestEditionComponent
   },
   {
@@ -19,7 +19,7 @@ const routes: Routes = [
     component: RequestListComponent
   },
   {
-    path: "remove-request",
+    path: "remove-request/:id",
     component: RemoveRequestComponent
   },
 ];
