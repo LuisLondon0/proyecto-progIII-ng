@@ -3,13 +3,17 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { CommitteeModel } from 'src/app/models/parameters/committee.model';
+import { LineOfResearchModel } from 'src/app/models/parameters/line-of-research.model';
 import { ModalityModel } from 'src/app/models/parameters/modality.model';
 import { TypeOfRequestModel } from 'src/app/models/parameters/type-of-request.model';
+import { ProponentModel } from 'src/app/models/proponent/proponent.model';
 import { RequestModel } from 'src/app/models/request/request.model';
 import { UploadedFileModel } from 'src/app/models/request/uploaded.file.model';
 import { CommitteeService } from 'src/app/services/parameters/committee.service';
+import { LineOfResearchService } from 'src/app/services/parameters/line-of-research.service';
 import { ModalityService } from 'src/app/services/parameters/modality.service';
 import { TypeOfRequestService } from 'src/app/services/parameters/type-of-request.service';
+import { proponentService } from 'src/app/services/proponent/proponent.service';
 import { RequestService } from 'src/app/services/request/request.service';
 
 declare const OpenGeneralMessageModal: any;
@@ -24,6 +28,8 @@ export class RequestCreationComponent implements OnInit {
   modalityList: ModalityModel[] = [];
   typeOfRequestList: TypeOfRequestModel[] = [];
   committeeList: CommitteeModel[] = [];
+  proponentList: ProponentModel[] = [];
+  lineOfResearchList: LineOfResearchModel[] = [];
   form: FormGroup = new FormGroup({});
   formFile: FormGroup = new FormGroup({});
 
@@ -34,6 +40,8 @@ export class RequestCreationComponent implements OnInit {
     private modalityService: ModalityService,
     private typeOfRequestService: TypeOfRequestService,
     private committeeService: CommitteeService,
+    private proponentService: proponentService,
+    private lineOfResearchService: LineOfResearchService
   ) { }
 
   ngOnInit(): void {
@@ -61,6 +69,24 @@ export class RequestCreationComponent implements OnInit {
       }
     })
     
+    this.proponentService.GetRecordList().subscribe({
+      next: (data: ProponentModel[]) => {
+        this.proponentList = data;
+        setTimeout(() => {
+          InitSelectById("selProponent");
+        }, 100)
+      }
+    })
+
+    this.lineOfResearchService.GetRecordList().subscribe({
+      next: (data: LineOfResearchModel[]) => {
+        this.lineOfResearchList = data;
+        setTimeout(() => {
+          InitSelectById("selLineOfResearch");
+        }, 100)
+      }
+    })
+
     this.committeeService.GetRecordList().subscribe({
       next: (data: CommitteeModel[]) => {
         this.committeeList = data;
@@ -82,6 +108,7 @@ export class RequestCreationComponent implements OnInit {
       archivoZip: ["", [Validators.required]],
       proponenteId: ["", [Validators.required]],
       comites: [[], [Validators.required]],
+      proponentes: [[], [Validators.required]],
     })
   }
 
@@ -97,26 +124,49 @@ export class RequestCreationComponent implements OnInit {
     model.nombreTrabajo = this.form.controls["nombreTrabajo"].value;
     model.descripcion = this.form.controls["descripcion"].value;
     model.modalidadId = parseInt(this.form.controls["modalidadId"].value);
-    model.areaInvestigacionId = this.form.controls["areaInvestigacionId"].value;
+    model.areaInvestigacionId = parseInt(this.form.controls["areaInvestigacionId"].value);
     model.tipoSolicitudId = parseInt(this.form.controls["tipoSolicitudId"].value);
     model.archivoZip = this.form.controls["archivoZip"].value;
     model.proponenteId = this.form.controls["proponenteId"].value;
+
+    let proponentString = this.form.controls["proponentes"].value
+    let proponentId = parseInt(proponentString[0])
+    
+    model.proponenteId = proponentId;
 
     this.service.SaveRecord(model).subscribe({
       next: (data: RequestModel) => {
         if(data.id){
           
-          let string = this.form.controls["comites"].value;
-          let numbers = []
+          let stringCommittees = this.form.controls["comites"].value;
+          let numbersCommittees = []
           
-          for(let i of string){
-            numbers.push(parseInt(i))
+          for(let i of stringCommittees){
+            numbersCommittees.push(parseInt(i))
           }
 
-          this.service.SaveCommittees(data.id, numbers).subscribe({
-            next: (data: boolean) => {
-              OpenGeneralMessageModal(GeneralData.SAVED_MESSAGE);
-              this.router.navigate(["/request/request-list"])
+          this.service.SaveCommittees(data.id, numbersCommittees).subscribe({
+            next: (dat: boolean) => {
+              if(data.id){
+                let stringProponents = this.form.controls["proponentes"].value;
+                let numbersProponents = []
+          
+                for(let i of stringProponents){
+                  numbersProponents.push(parseInt(i))
+                }
+
+                numbersProponents.shift()
+
+                this.service.SaveProponents(data.id, numbersProponents).subscribe({
+                  next: (da: boolean) => {
+                    OpenGeneralMessageModal(GeneralData.SAVED_MESSAGE);
+                    this.router.navigate(["/request/request-list"])
+                  },
+                  error: (err: any) => {
+                    OpenGeneralMessageModal(GeneralData.ERROR_MESSAGE);
+                  }
+                });
+              }
             },
             error: (err: any) => {
               OpenGeneralMessageModal(GeneralData.ERROR_MESSAGE);

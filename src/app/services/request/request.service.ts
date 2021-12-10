@@ -54,6 +54,15 @@ export class RequestService {
     })})
   }
 
+  SaveProponents(id: number, data: number[]): Observable<boolean>{
+    return this.http.post<boolean>(`${this.url}/relacionar-proponentes-a-solicitud/${id}`, {
+      proponentes: data,
+    },
+    {headers: new HttpHeaders({
+      Authorization: `Bearer ${this.token}`
+    })})
+  }
+
   SearchRecord(id: number): Observable<RequestModel>{
     return this.http.get<RequestModel>(`${this.url}/solicitudes/${id}`);
   }

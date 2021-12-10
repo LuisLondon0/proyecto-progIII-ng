@@ -32,8 +32,10 @@
         </div>
         <div class="row">
             <div class="input-field col s3">
-                <input formControlName="areaInvestigacionId" id="areaInvestigacionId" type="number">
-                <label for="areaInvestigacionId">Linea de Investigacion</label>
+                <select id="selLineOfResearch" formControlName="areaInvestigacionId">
+                    <option *ngFor="let l of lineOfResearchList" value="{{l.id}}">{{l.nombre}}</option>
+                </select>
+                <label>Linea de Investigacion</label>
             </div>
             <div class="input-field col s3">
                 <select id="selTypeOfRequest" formControlName="tipoSolicitudId">
@@ -48,8 +50,10 @@
                 <label>Comites</label>
             </div>
             <div class="input-field col s3">
-                <input formControlName="proponenteId" id="proponenteId" type="number">
-                <label for="proponenteId">Proponente</label>
+                <select multiple id="selProponent" formControlName="proponentes">
+                    <option *ngFor="let p of proponentList" value="{{p.id}}">{{p.primerNombre}} {{p.primerApellido}}</option>
+                </select>
+                <label>Proponentes</label>
             </div>
             <input type="text" formControlName="archivoZip">
         </div>
