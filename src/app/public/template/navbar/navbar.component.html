@@ -1,17 +1,35 @@
 <nav>
     <div class="nav-wrapper teal lighten-2">
-        <a routerLink="home" class="">Inicio</a>
+        <a routerLink="home" style="margin-top: 100px;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/Logo_de_la_Universidad_de_Caldas.svg/1200px-Logo_de_la_Universidad_de_Caldas.svg.png" style="width: auto; height: auto; max-width: 50px; max-width: 50px; margin: 5px;"></a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">Menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li><a routerLink="proponent/proponent-list">Proponente</a></li>
             <li><a routerLink="request/request-list">Solicitud</a></li>
             <li><a routerLink="evaluation/evaluation-list">Evaluacion</a></li>
             <li><a routerLink="">Reportes</a></li>
+            <li><a class='dropdown-trigger' routerLink="" data-target='dropdown1'>Parametrizacion</a></li>
+            <ul id='dropdown1' class='dropdown-content'>
+              <li><a routerLink="">Tipo de Vinculación</a></li>
+              <li><a routerLink="">Tipo de comité</a></li>
+              <li><a routerLink="">Tipo de Solicitud</a></li>
+              <li><a routerLink="">Departamento</a></li>
+              <li><a routerLink="">Facultad</a></li>
+              <li><a routerLink="">Jurado</a></li>
+              <li><a routerLink="">Linea de Investigación</a></li>
+              <li><a routerLink="">Modalidad</a></li>
+            </ul>
             <li><a routerLink="">Login</a></li>
             <li><a routerLink="">Logout</a></li>
             <li><a routerLink="">Recuperar Contraseña</a></li>
             <li><a routerLink="">Cambiar Contraseña</a></li>
             <li><a routerLink="">Usuario</a></li>
+            <li><a class='dropdown-trigger' routerLink="" data-target='dropdown2'>Cuenta</a></li>
+            <ul id='dropdown2' class='dropdown-content'>
+              <li><a routerLink="">Logout</a></li>
+              <li><a routerLink="">Login</a></li>
+              <li><a routerLink="">Recuperar contraseña</a></li>
+              <li><a routerLink="">Cambiar contraseña</a></li>
+            </ul>
         </ul>
     </div>
 </nav>
@@ -20,10 +38,28 @@
     <li><a routerLink="proponent/proponent-list">Proponente</a></li>
     <li><a routerLink="request/request-list">Solicitud</a></li>
     <li><a routerLink="evaluation/evaluation-list">Evaluacion</a></li>
+    <li><a class='dropdown-trigger' routerLink="" data-target='dropdown1M'>Parametrizacion</a></li>
+    <ul id='dropdown1M' class='dropdown-content'>
+      <li><a routerLink="">Tipo de Vinculación</a></li>
+      <li><a routerLink="">Tipo de comité</a></li>
+      <li><a routerLink="">Tipo de Solicitud</a></li>
+      <li><a routerLink="">Departamento</a></li>
+      <li><a routerLink="">Facultad</a></li>
+      <li><a routerLink="">Jurado</a></li>
+      <li><a routerLink="">Linea de Investigación</a></li>
+      <li><a routerLink="">Modalidad</a></li>
+    </ul>
     <li><a routerLink="">Reportes</a></li>
     <li><a routerLink="">Login</a></li>
     <li><a routerLink="">Logout</a></li>
     <li><a routerLink="">Recuperar Contraseña</a></li>
     <li><a routerLink="">Cambiar Contraseña</a></li>
     <li><a routerLink="">Usuario</a></li>
+    <li><a class='dropdown-trigger' routerLink="" data-target='dropdown2M'>Cuenta</a></li>
+    <ul id='dropdown2M' class='dropdown-content'>
+      <li><a routerLink="">Logout</a></li>
+      <li><a routerLink="">Login</a></li>
+      <li><a routerLink="">Recuperar contraseña</a></li>
+      <li><a routerLink="">Cambiar contraseña</a></li>
+    </ul>
 </ul>

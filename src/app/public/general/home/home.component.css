@@ -1,4 +1,19 @@
 h2 {
-    color: green;
-    text-align: center;
+  color: green;
+  text-align: center;
+}
+
+ul {
+  display: flex;
+  list-style: none;
+  max-width: 100%;
+}
+
+li {
+  display: flex;
+  color: brown;
+  width: 50%;
+  height: auto;
+  margin: 10px;
+  padding: 2%;
 }
