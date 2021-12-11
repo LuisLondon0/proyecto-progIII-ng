@@ -8,7 +8,7 @@ import { ModalityModel } from 'src/app/models/parameters/modality.model';
 import { TypeOfRequestModel } from 'src/app/models/parameters/type-of-request.model';
 import { ProponentModel } from 'src/app/models/proponent/proponent.model';
 import { RequestModel } from 'src/app/models/request/request.model';
-import { UploadedFileModel } from 'src/app/models/request/uploaded.file.model';
+import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { CommitteeService } from 'src/app/services/parameters/committee.service';
 import { LineOfResearchService } from 'src/app/services/parameters/line-of-research.service';
 import { ModalityService } from 'src/app/services/parameters/modality.service';

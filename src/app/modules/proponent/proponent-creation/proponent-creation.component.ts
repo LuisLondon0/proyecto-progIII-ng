@@ -3,7 +3,7 @@ import { FormBuilder,FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { ProponentModel } from 'src/app/models/proponent/proponent.model';
-import { UploadedFileModel } from 'src/app/models/proponent/uploaded.file.model';
+import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { proponentService } from 'src/app/services/proponent/proponent.service';
 import { BondingService } from 'src/app/services/parameters/bonding.service';
 import { BondingModel } from 'src/app/models/parameters/bonding.model';

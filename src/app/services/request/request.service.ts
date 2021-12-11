@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { RequestModel } from 'src/app/models/request/request.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { UploadedFileModel } from 'src/app/models/request/uploaded.file.model';
+import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { RequestProponentModel } from 'src/app/models/request/request-proponent.model';
 import { CommitteeModel } from 'src/app/models/parameters/committee.model';
 

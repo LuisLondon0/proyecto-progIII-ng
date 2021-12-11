@@ -6,6 +6,7 @@
         <th>Id</th>
         <th>Nombre</th>
         <th>Formato</th>
+        <th>Acciones</th>
     </thead>
     <tbody>
         <tr *ngFor="let r of recordList | paginate: {itemsPerPage: pageSize, currentPage: p, totalItems: total }">

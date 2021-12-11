@@ -1,4 +1,14 @@
 <div class="row">
+    <div class="col s12">
+        <div class="row">
+            <div class="col s12 center-align">
+                <input class="btn btn-warning blue" type="file" value="Seleccionar" (change)="OnChangeInputFile($event)"> &nbsp;
+                <button class="btn" (click)="UploadFile()">Cargar Formato</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
     <form [formGroup]="form" class="col s12">
         <input type="hidden" formControlName="id" />
         <div class="row">
@@ -7,7 +17,7 @@
                 <label for="nombre" class="active">Nombre</label>
             </div>
             <div class="input-field col s6">
-                <input formControlName="formato" id="formato" type="text">
+                <input formControlName="formato" id="formato" type="text" readonly>
                 <label for="formato" class="active">Formato</label>
             </div>
         </div>

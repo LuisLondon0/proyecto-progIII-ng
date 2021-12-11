@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { ProponentModel } from 'src/app/models/proponent/proponent.model';
-import { UploadedFileModel } from 'src/app/models/proponent/uploaded.file.model';
+import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { LocalStorageService } from '../shared/local-storage.service';
 
 @Injectable({

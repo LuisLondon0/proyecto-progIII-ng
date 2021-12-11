@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { BondingModel } from 'src/app/models/parameters/bonding.model';
 import { ProponentModel } from 'src/app/models/proponent/proponent.model';
-import { UploadedFileModel } from 'src/app/models/proponent/uploaded.file.model';
+import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { BondingService } from 'src/app/services/parameters/bonding.service';
 import { proponentService } from 'src/app/services/proponent/proponent.service';
 

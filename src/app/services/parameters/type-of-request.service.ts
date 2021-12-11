@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { TypeOfRequestModel } from 'src/app/models/parameters/type-of-request.model';
+import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 
 @Injectable({
   providedIn: 'root'
@@ -52,5 +53,14 @@ export class TypeOfRequestService {
     {headers: new HttpHeaders({
       Authorization: `Bearer ${this.token}`
     })})
+  }
+
+  UploadFile(formData: FormData): Observable<UploadedFileModel> {
+    return this.http.post<UploadedFileModel>(`${this.url}/CargaFormato`, formData,
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      })
   }
 }

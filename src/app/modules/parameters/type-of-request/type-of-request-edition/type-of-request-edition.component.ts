@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { TypeOfRequestModel } from 'src/app/models/parameters/type-of-request.model';
+import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { TypeOfRequestService } from 'src/app/services/parameters/type-of-request.service';
 
 declare const OpenGeneralMessageModal: any;
@@ -14,7 +15,8 @@ declare const OpenGeneralMessageModal: any;
 })
 export class TypeOfRequestEditionComponent implements OnInit {
 
-  form: FormGroup = new FormGroup({})
+  form: FormGroup = new FormGroup({});
+  formFile: FormGroup = new FormGroup({});
 
   constructor(
     private fb: FormBuilder,
@@ -25,6 +27,7 @@ export class TypeOfRequestEditionComponent implements OnInit {
 
   ngOnInit(): void {
     this.CreateForm();
+    this.CreateFormFile();
     this.SearchRecord();
   }
 
@@ -33,6 +36,12 @@ export class TypeOfRequestEditionComponent implements OnInit {
       id: ["", [Validators.required]],
       nombre: ["", [Validators.required]],
       formato: ["", [Validators.required]]
+    })
+  }
+
+  CreateFormFile(){
+    this.formFile = this.fb.group({
+      file: ["", []]
     })
   }
 
@@ -62,5 +71,22 @@ export class TypeOfRequestEditionComponent implements OnInit {
         OpenGeneralMessageModal(GeneralData.ERROR_MESSAGE);
       }
     });
+  }
+
+  OnChangeInputFile(event: any){
+    if(event.target.files.length > 0){
+      const file = event.target.files[0];
+      this.formFile.controls["file"].setValue(file);
+    }
+  }
+
+  UploadFile(){
+    const formData = new FormData();
+    formData.append("file", this.formFile.controls["file"].value);
+    this.service.UploadFile(formData).subscribe({
+      next: (data: UploadedFileModel) => {
+        this.form.controls["formato"].setValue(data.filename)
+      }
+    })
   }
 }
