@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { RequestModel } from 'src/app/models/request/request.model';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UploadedFileModel } from 'src/app/models/request/uploaded.file.model';
 import { RequestProponentModel } from 'src/app/models/request/request-proponent.model';
+import { CommitteeModel } from 'src/app/models/parameters/committee.model';
 
 @Injectable({
   providedIn: 'root'
@@ -19,17 +20,21 @@ export class RequestService {
     //private localStorageService: LocalStorageService
   ) {
     //this.token = this.localStorageService.GetToken();
-   }
+  }
 
-  GetRecordList(): Observable<RequestModel[]>{
+  GetRecordList(): Observable<RequestModel[]> {
     return this.http.get<RequestModel[]>(`${this.url}/solicitudes${this.filter}`)
   }
 
-  GetProponents(id: number): Observable<RequestProponentModel[]>{
+  GetProponents(id: number): Observable<RequestProponentModel[]> {
     return this.http.get<RequestProponentModel[]>(`${this.url}/solicitud-proponentes?filter={"where":{"solicitudId":${id}}}`)
   }
 
-  SaveRecord(data: RequestModel): Observable<RequestModel>{
+  GetComites(id: number): Observable<CommitteeModel[]> {
+    return this.http.get<CommitteeModel[]>(`${this.url}/solicitud/${id}/comites`)
+  }
+
+  SaveRecord(data: RequestModel): Observable<RequestModel> {
     return this.http.post<RequestModel>(`${this.url}/solicitud-proponentes`, {
       fecha: data.fecha,
       nombreTrabajo: data.nombreTrabajo,
@@ -40,34 +45,40 @@ export class RequestService {
       proponenteId: data.proponenteId,
       archivoZip: data.archivoZip,
     },
-    {headers: new HttpHeaders({
-      Authorization: `Bearer ${this.token}`
-    })})
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      })
   }
 
-  SaveCommittees(id: number, data: number[]): Observable<boolean>{
+  SaveCommittees(id: number, data: number[]): Observable<boolean> {
     return this.http.post<boolean>(`${this.url}/relacionar-comites-a-solicitud/${id}`, {
       comites: data,
     },
-    {headers: new HttpHeaders({
-      Authorization: `Bearer ${this.token}`
-    })})
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      })
   }
 
-  SaveProponents(id: number, data: number[]): Observable<boolean>{
+  SaveProponents(id: number, data: number[]): Observable<boolean> {
     return this.http.post<boolean>(`${this.url}/relacionar-proponentes-a-solicitud/${id}`, {
       proponentes: data,
     },
-    {headers: new HttpHeaders({
-      Authorization: `Bearer ${this.token}`
-    })})
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      })
   }
 
-  SearchRecord(id: number): Observable<RequestModel>{
+  SearchRecord(id: number): Observable<RequestModel> {
     return this.http.get<RequestModel>(`${this.url}/solicitudes/${id}`);
   }
 
-  EditRecord(data: RequestModel): Observable<RequestModel>{
+  EditRecord(data: RequestModel): Observable<RequestModel> {
     return this.http.put<RequestModel>(`${this.url}/solicitudes/${data.id}`, {
       id: data.id,
       fecha: data.fecha,
@@ -78,22 +89,28 @@ export class RequestService {
       tipoSolicitudId: data.tipoSolicitudId,
       archivoZip: data.archivoZip,
     },
-    {headers: new HttpHeaders({
-      Authorization: `Bearer ${this.token}`
-    })})
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      })
   }
 
-  RemoveRecord(id: number): Observable<any>{
+  RemoveRecord(id: number): Observable<any> {
     return this.http.delete<RequestModel>(`${this.url}/solicitudes/${id}`,
-    {headers: new HttpHeaders({
-      Authorization: `Bearer ${this.token}`
-    })})
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      })
   }
 
-UploadFile(formData: FormData): Observable<UploadedFileModel>{
-  return this.http.post<UploadedFileModel>(`${this.url}/CargarArchivoZip`, formData,
-  {headers: new HttpHeaders({
-    Authorization: `Bearer ${this.token}`
-  })})
-}
+  UploadFile(formData: FormData): Observable<UploadedFileModel> {
+    return this.http.post<UploadedFileModel>(`${this.url}/CargarArchivoZip`, formData,
+      {
+        headers: new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        })
+      })
+  }
 }

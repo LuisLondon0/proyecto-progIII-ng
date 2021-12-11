@@ -12,8 +12,8 @@
     <form [formGroup]="form" class="col s12">
         <div class="row">
             <div class="input-field col s3">
-                <input formControlName="fecha" id="fecha" type="text">
-                <label for="fecha">Fecha</label>
+                <input formControlName="fecha" id="fecha" type="datetime-local">
+                <label for="fecha" class="active">Fecha</label>
             </div>
             <div class="input-field col s3">
                 <input formControlName="nombreTrabajo" id="nombreTrabajo" type="text">
@@ -55,7 +55,7 @@
                 </select>
                 <label>Proponentes</label>
             </div>
-            <input type="text" formControlName="archivoZip">
+            <input type="text" formControlName="archivoZip" readonly>
         </div>
         <div class="row">
             <div class="input-field col s2">

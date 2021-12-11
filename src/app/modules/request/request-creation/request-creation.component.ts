@@ -120,7 +120,10 @@ export class RequestCreationComponent implements OnInit {
 
   SaveRecord(){
     let model = new RequestModel();
-    model.fecha = this.form.controls["fecha"].value;
+
+    let date : Date = new Date(this.form.controls["fecha"].value);
+
+    model.fecha = date.toISOString();
     model.nombreTrabajo = this.form.controls["nombreTrabajo"].value;
     model.descripcion = this.form.controls["descripcion"].value;
     model.modalidadId = parseInt(this.form.controls["modalidadId"].value);
@@ -131,8 +134,8 @@ export class RequestCreationComponent implements OnInit {
 
     let proponentString = this.form.controls["proponentes"].value
     let proponentId = parseInt(proponentString[0])
-    
-    model.proponenteId = proponentId;
+
+     model.proponenteId = proponentId;
 
     this.service.SaveRecord(model).subscribe({
       next: (data: RequestModel) => {

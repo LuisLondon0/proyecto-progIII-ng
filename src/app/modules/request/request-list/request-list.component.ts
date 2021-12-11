@@ -19,7 +19,7 @@ export class RequestListComponent implements OnInit {
   p: number = 1;
   total: number = 0;
   recordList: RequestModel[] = [];
-  
+
   constructor(
     private service: RequestService,
     private proponentService: proponentService,
@@ -30,7 +30,7 @@ export class RequestListComponent implements OnInit {
     this.GetRecordList();
   }
 
-  GetRecordList(){
+  GetRecordList() {
     this.service.GetRecordList().subscribe({
       next: (data: RequestModel[]) => {
         this.recordList = data;
@@ -41,17 +41,17 @@ export class RequestListComponent implements OnInit {
     })
   }
 
-  GetProponents(){
-    for(let r of this.recordList){
-      if(r.id){
-        let proponents : ProponentModel[] = []
+  GetProponents() {
+    for (let r of this.recordList) {
+      if (r.id) {
+        let proponents: ProponentModel[] = []
         this.service.GetProponents(r.id).subscribe({
           next: (data: RequestProponentModel[]) => {
-            for(let rp of data){
-              if(rp.proponenteId){
+            for (let rp of data) {
+              if (rp.proponenteId) {
                 this.proponentService.SearchRecord(rp.proponenteId).subscribe({
                   next: (d: ProponentModel) => {
-                      proponents.push(d)
+                    proponents.push(d)
                   }
                 })
               }
@@ -63,14 +63,14 @@ export class RequestListComponent implements OnInit {
     }
   }
 
-  GetLineOfResearch(){
-    for(let r of this.recordList){
-      if(r.areaInvestigacionId){
+  GetLineOfResearch() {
+    for (let r of this.recordList) {
+      if (r.areaInvestigacionId) {
         this.lineOfResearchService.SearchRecord(r.areaInvestigacionId).subscribe({
-                  next: (data: LineOfResearchModel) => {
-                      r.areaInvestigacion = data
-                  }
-                })
+          next: (data: LineOfResearchModel) => {
+            r.areaInvestigacion = data
+          }
+        })
       }
     }
   }

@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
+import { LineOfResearchModel } from 'src/app/models/parameters/line-of-research.model';
+import { ModalityModel } from 'src/app/models/parameters/modality.model';
+import { TypeOfRequestModel } from 'src/app/models/parameters/type-of-request.model';
 import { RequestModel } from 'src/app/models/request/request.model';
+import { LineOfResearchService } from 'src/app/services/parameters/line-of-research.service';
+import { ModalityService } from 'src/app/services/parameters/modality.service';
+import { TypeOfRequestService } from 'src/app/services/parameters/type-of-request.service';
 import { RequestService } from 'src/app/services/request/request.service';
 
 declare const OpenGeneralMessageModal: any;
@@ -17,9 +23,9 @@ export class RemoveRequestComponent implements OnInit {
   fecha: string = "";
   nombreTrabajo: string = "";
   descripcion: string = "";
-  modalidadId: number = 0;
-  areaInvestigacionId: number = 0;
-  tipoSolicitudId: number = 0;
+  modalidadId: string = "";
+  areaInvestigacionId: string = "";
+  tipoSolicitudId: string = "";
   archivoZip: string = "";
 
 
@@ -27,6 +33,9 @@ export class RemoveRequestComponent implements OnInit {
     private router: Router,
     private service: RequestService,
     private route: ActivatedRoute,
+    private modalityService: ModalityService,
+    private typeOfRequestService: TypeOfRequestService,
+    private lineOfResearchService: LineOfResearchService
   ) { }
 
   ngOnInit(): void {
@@ -40,12 +49,36 @@ export class RemoveRequestComponent implements OnInit {
         if(data.id && data.fecha && data.nombreTrabajo && data.descripcion && data.modalidadId && data.areaInvestigacionId && data.tipoSolicitudId){
           this.id = data.id;
           this.fecha = data.fecha;
-          this.fecha = data.nombreTrabajo;
+          this.nombreTrabajo = data.nombreTrabajo;
           this.descripcion = data.descripcion;
-          this.modalidadId = data.modalidadId;
-          this.areaInvestigacionId = data.areaInvestigacionId;
-          this.tipoSolicitudId = data.tipoSolicitudId;
-          //this.archivoZip = data.archivoZip;
+
+          if(data.archivoZip){
+            this.archivoZip = data.archivoZip;
+          }
+
+          this.modalityService.SearchRecord(data.modalidadId).subscribe({
+            next: (data: ModalityModel) => {
+              if(data.nombre){
+                this.modalidadId = data.nombre
+              }
+            }
+          })
+
+          this.lineOfResearchService.SearchRecord(data.areaInvestigacionId).subscribe({
+            next: (data: LineOfResearchModel) => {
+              if(data.nombre){
+                this.areaInvestigacionId = data.nombre
+              }
+            }
+          })
+
+          this.typeOfRequestService.SearchRecord(data.tipoSolicitudId).subscribe({
+            next: (data: TypeOfRequestModel) => {
+              if(data.nombre){
+                this.tipoSolicitudId = data.nombre
+              }
+            }
+          })
         }
       }
     })
