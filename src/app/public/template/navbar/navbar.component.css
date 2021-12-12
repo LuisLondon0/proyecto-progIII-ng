@@ -1,0 +1,22 @@
+.sidenav-trigger {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+#iconMenu {
+  width: auto;
+  height: auto;
+  max-width: 30px;
+  max-height: 30px;
+  margin: 10px;
+}
+
+#iconHome {
+  width: auto;
+  height: auto;
+  max-width: 45px;
+  max-height: 45px;
+  margin: 10px;
+}

@@ -15,3 +15,12 @@ function OpenDropDownCount(){
   var instance = M.Dropdown.getInstance(elem);
   instance.open();
 }
+
+
+function Carousel(){
+  console.log("hola carrusel")
+  let elem = document.querySelector("#carousel")
+  var instance = M.Carousel.getInstance(elem);
+  instance.next();
+  instance.prev();
+}

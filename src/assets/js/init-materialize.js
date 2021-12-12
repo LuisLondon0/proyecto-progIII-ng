@@ -21,3 +21,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     });
   });
+
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.carousel');
+    var instances = M.Carousel.init(elems, {
+      duration: 300,
+      shift: 100,
+      numVisible: 3,
+      duration: 100,
+      opacity: 100,
+      fullWidth: true,
+      noWrap: true,
+      indicators: true
+    });
+  });
+
