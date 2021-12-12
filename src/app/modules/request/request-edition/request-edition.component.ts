@@ -10,7 +10,6 @@ import { ProponentModel } from 'src/app/models/proponent/proponent.model';
 import { RequestProponentModel } from 'src/app/models/request/request-proponent.model';
 import { RequestModel } from 'src/app/models/request/request.model';
 import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
-import { CommitteeService } from 'src/app/services/parameters/committee.service';
 import { LineOfResearchService } from 'src/app/services/parameters/line-of-research.service';
 import { ModalityService } from 'src/app/services/parameters/modality.service';
 import { TypeOfRequestService } from 'src/app/services/parameters/type-of-request.service';
@@ -40,7 +39,6 @@ export class RequestEditionComponent implements OnInit {
     private route: ActivatedRoute,
     private modalityService: ModalityService,
     private typeOfRequestService: TypeOfRequestService,
-    private committeeService: CommitteeService,
     private proponentService: proponentService,
     private lineOfResearchService: LineOfResearchService
   ) { }

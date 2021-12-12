@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { BondingModel } from 'src/app/models/parameters/bonding.model';
+import { DepartmentModel } from 'src/app/models/parameters/department.model';
 import { ProponentModel } from 'src/app/models/proponent/proponent.model';
 import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { BondingService } from 'src/app/services/parameters/bonding.service';
@@ -18,7 +19,6 @@ declare const InitSelectById: any;
 })
 export class ProponentEditionComponent implements OnInit {
 
-  //departmentList: DepartmentModel[] = [];
   bondingList: BondingModel[] = [];
   form: FormGroup = new FormGroup({});
   formFile: FormGroup = new FormGroup({});
@@ -32,29 +32,28 @@ export class ProponentEditionComponent implements OnInit {
     private service: proponentService,
     private route: ActivatedRoute,
     private bondingService: BondingService,
-    //private departmentService: departmentService
   ) { }
 
   ngOnInit(): void {
     this.CreateForm();
-    this.SearchRecord();
     this.GetOptionsToSelects();
     this.CreateFormFile();
+    this.SearchRecord();
   }
 
 
   CreateForm() {
     this.form = this.fb.group({
       id: ["", [Validators.required]],
-      document: [ [Validators.required]],
+      document: ["", [Validators.required]],
       firstName: ["", [Validators.required]],
       otherName: ["", [Validators.required]],
       firstLastName: ["", [Validators.required]],
       otherLastName: ["", [Validators.required]],
       email: ["", [Validators.required]],
-      phone: [ [Validators.required]],
+      phone: ["", [Validators.required]],
       typeVinculationId: ["", [Validators.required]],
-      department: ["", [Validators.required]],
+      departments: ["", [Validators.required]],
       main_image:["", [Validators.required]]
     });
   }
@@ -70,7 +69,6 @@ export class ProponentEditionComponent implements OnInit {
     this.service.SearchRecord(id).subscribe({
       next: (data: ProponentModel) => {
         this.form.controls["id"].setValue(data.id);
-        this.form.controls["name"].setValue(data.primerNombre);
         this.form.controls["document"].setValue(data.documento);
         this.form.controls["firstName"].setValue(data.primerNombre);
         this.form.controls["otherName"].setValue(data.otroNombre);
@@ -78,14 +76,34 @@ export class ProponentEditionComponent implements OnInit {
         this.form.controls["otherLastName"].setValue(data.otroApellido);
         this.form.controls["phone"].setValue(data.celular);
         this.form.controls["email"].setValue(data.correo);
-        this.form.controls["typeVinculationId"].setValue(data.tipoVinculacion);
-        this.form.controls["main_image"].setValue(data.foto);
+        this.form.controls["typeVinculationId"].setValue(data.tipoVinculacionId);
+
+        if(data.foto != null && data.foto != "" && data.foto != "string"){
+          this.form.controls["main_image"].setValue(data.foto);
+          this.uploadedFilename = data.foto;
+          this.uploadedFile = true;
+        }
+
+        let departamentos: string[] = []
+
+        this.service.GetDepartamentos(id).subscribe({
+          next: (d: DepartmentModel[]) => {
+            for (let c of d) {
+              if (c.nombre) {
+                departamentos.push(" " + c.nombre)
+              }
+            }
+            this.form.controls["departments"].setValue(departamentos);
+          }
+        })
       }
     });
   }
 
-  SaveRecord() {
+  EditRecord() {
     let model = new ProponentModel();
+    model.id = this.form.controls["id"].value;
+
     model.documento = this.form.controls["document"].value;
     model.primerNombre = this.form.controls["firstName"].value;
     model.otroNombre = this.form.controls["otherName"].value;
@@ -95,7 +113,7 @@ export class ProponentEditionComponent implements OnInit {
     model.correo = this.form.controls["email"].value;
     model.tipoVinculacionId = parseInt(this.form.controls["typeVinculationId"].value);
     model.foto = this.form.controls["main_image"].value;
-    model.id = this.form.controls["id"].value;
+
     this.service.EditRecord(model).subscribe({
       next: (data: ProponentModel) => {
         OpenGeneralMessageModal(GeneralData.SAVED_MESSAGE);
@@ -138,17 +156,5 @@ GetOptionsToSelects() {
         }
       }
     );
-
-    // this.departmentService.GetRecordList().subscribe(
-    //   {
-    //     next: (data: DepartmentModel[]) => {
-    //       this.departmentList = data;
-    //       setTimeout(() => {
-    //         InitSelectById("selDepartment");
-    //       }, 100);
-    //     }
-    //   }
-    // );
   }
-
 }

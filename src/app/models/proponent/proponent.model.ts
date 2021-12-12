@@ -1,4 +1,5 @@
 import { BondingModel } from "../parameters/bonding.model";
+import { DepartmentModel } from "../parameters/department.model";
 
 export class ProponentModel {
     id?: number;
@@ -12,5 +13,5 @@ export class ProponentModel {
     tipoVinculacionId?: number;
     foto?: string;
     tipoVinculacion?: BondingModel;
-    //departamento?: DepartmentModel[];
+    departamentos?: DepartmentModel[];
 }

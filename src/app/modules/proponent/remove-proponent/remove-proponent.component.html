@@ -1,37 +1,53 @@
 <div class="row">
-  <div class="row">
-    <div class="input-field col s12">
-      <label>Está seguro de eliminar por completo el registro con la siguiente información:</label>
-      <br />
-      <ul class="deleteList">
-        <li>
-          <strong> Id: {{id}}</strong>
-        </li>
-        <li>
-          <strong>  Primer Nombre: {{firstName}}</strong>
-        </li>
-        <li>
-          <strong> Otro Nombre: {{otherName}}</strong>
-        </li>
-        <li>
-          <strong> Primer Apellido: {{firstLastName}}</strong>
-        </li>
-        <li>
-          <strong> otro Apellido: {{otherLastName}}</strong>
-        </li>
-      </ul>
+    <div class="row">
+        <div class="input-field col s12">
+            <label>Está seguro de eliminar por completo el registro con la siguiente información:</label>
+            <br />
+            <ul class="deleteList">
+                <li>
+                    <img *ngIf="!uploadedFile" class="default-proponent" src="/assets/images/proponents/user.jpg" style="width: 100px; height: 100px; margin-top: 50px;" />
+                    <img *ngIf="uploadedFile" class="default-proponent" src="{{url}}/archivo/1/{{uploadedFilename}}" style="width: 100px; height: 100px; margin-top: 50px;" />
+                </li>
+                <li>
+                    <strong class="red-text">Id:</strong> {{id}}
+                </li>
+                <li>
+                    <strong class="red-text">Documento:</strong> {{document}}
+                </li>
+                <li>
+                    <strong class="red-text">Primer Nombre:</strong> {{firstName}}
+                </li>
+                <li>
+                    <strong class="red-text">Otro Nombre:</strong> {{otherName}}
+                </li>
+                <li>
+                    <strong class="red-text">Primer Apellido:</strong> {{firstLastName}}
+                </li>
+                <li>
+                    <strong class="red-text">Otro Apellido:</strong> {{otherLastName}}
+                </li>
+                <li>
+                    <strong class="red-text">Correo:</strong> {{email}}
+                </li>
+                <li>
+                    <strong class="red-text">Celular:</strong> {{phone}}
+                </li>
+                <li>
+                    <strong class="red-text">Tipo de Vinculacion:</strong> {{typeVinculation}}
+                </li>
+            </ul>
+        </div>
     </div>
-  </div>
-  <div class="row">
-    <div class="input-field col s2">
-      <a routerLink="/proponent/proponent-list" class="btn btn-warning" style="background-color:#0dd1f2">
+    <div class="row">
+        <div class="input-field col s2">
+            <a routerLink="/proponent/proponent-list" class="btn btn-warning" style="background-color:#0dd1f2">
         Cancelar
       </a>
-    </div>
-    <div class="input-field col s10">
-      <button (click)="RemoveRecord()" class="btn btn-success" style="background-color:#0792a9;" routerLink="/proponent/proponent-list">
+        </div>
+        <div class="input-field col s10">
+            <button (click)="RemoveRecord()" class="btn btn-success" style="background-color:#0792a9;" routerLink="/proponent/proponent-list">
         Confirmar
       </button>
+        </div>
     </div>
-  </div>
 </div>

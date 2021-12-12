@@ -64,11 +64,11 @@
                 {{r.correo}}
             </td>
             <td class="tableList">
-                {{r.tipoVinculacionId}}
+                {{r.tipoVinculacion?.nombre}}
             </td>
             <td class="tableList">
                 <ul>
-                    <!-- <li *ngFor="let d of r.departamento">{{d.nombre}}</li> -->
+                    <li *ngFor="let d of r.departamentos">{{d.nombre}}</li>
                 </ul>
             </td>
             <td>

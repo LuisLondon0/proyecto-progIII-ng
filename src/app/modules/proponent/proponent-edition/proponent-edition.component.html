@@ -16,35 +16,36 @@
 </div>
 <div class="row">
     <form [formGroup]="form" class="col s12">
+        <input type="hidden" formControlName="id" />
         <input type="text" formControlName="main_image" />
         <div class="row">
             <div class="input-field col s3">
                 <input formControlName="document" id="documento" type="number">
-                <label for="documento">documento</label>
+                <label for="documento" class="active">documento</label>
             </div>
             <div class="input-field col s3">
                 <input formControlName="firstName" id="primerNombre" type="text">
-                <label for="primerNombre">Primer Nombre</label>
+                <label for="primerNombre" class="active">Primer Nombre</label>
             </div>
             <div class="input-field col s3">
                 <input formControlName="otherName" id="otroNombre" type="text">
-                <label for="primerNombre">Otro Nombre</label>
+                <label for="primerNombre" class="active">Otro Nombre</label>
             </div>
             <div class="input-field col s3">
                 <input formControlName="firstLastName" id="primerApellido" type="text">
-                <label for="primerApellido">Primer Apellido</label>
+                <label for="primerApellido" class="active">Primer Apellido</label>
             </div>
             <div class="input-field col s3">
                 <input formControlName="otherLastName" id="otroApellido" type="text">
-                <label for="otroApellido">Otro Apellido</label>
+                <label for="otroApellido" class="active">Otro Apellido</label>
             </div>
             <div class="input-field col s3">
                 <input formControlName="phone" id="celular" type="number">
-                <label for="celular">Celular</label>
+                <label for="celular" class="active">Celular</label>
             </div>
             <div class="input-field col s3">
                 <input formControlName="email" id="correo" type="email">
-                <label for="correo">correo</label>
+                <label for="correo" class="active">correo</label>
             </div>
             <div class="input-field col s3">
                 <select id="selBonding" formControlName="typeVinculationId">
@@ -52,12 +53,10 @@
         </select>
                 <label>Tipo de Vinculacion</label>
             </div>
-            <!-- <div class="input-field col s6">
-        <select multiple id="selDepartment">
-          <option *ngFor="let d of departmentList" value="{{d.id}}">{{d.nombre}}</option>
-        </select>
-        <label>Departamento</label>
-      </div> -->
+            <div class="input-field col s6">
+                <input formControlName="departments" id="departments" type="text" readonly>
+                <label class="active">Departamentos</label>
+            </div>
         </div>
         <div class="row">
             <div class="input-field col s2">
@@ -66,7 +65,7 @@
         </a>
             </div>
             <div class="input-field col s10">
-                <button (click)="SaveRecord()" class="btn btn-success" style="background-color:#0792a9; font-size: medium;" routerLink="/proponent/proponent-list">
+                <button (click)="EditRecord()" class="btn btn-success" style="background-color:#0792a9; font-size: medium;" routerLink="/proponent/proponent-list">
           Guardar
         </button>
             </div>

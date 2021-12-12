@@ -48,16 +48,16 @@
             </div>
             <div class="input-field col s3">
                 <select id="selBonding" formControlName="typeVinculationId">
-          <option *ngFor="let t of bondingList" value="{{t.id}}">{{t.nombre}}</option>
-        </select>
+                    <option *ngFor="let t of bondingList" value="{{t.id}}">{{t.nombre}}</option>
+                </select>
                 <label>Tipo de Vinculacion</label>
             </div>
-            <!-- <div class="input-field col s6">
-        <select multiple id="selDepartment" formControlName="departmentId">
-          <option *ngFor="let d of departmentList" value="{{d.id}}">{{d.nombre}}</option>
-        </select>
-        <label>Departamento</label>
-      </div> -->
+            <div class="input-field col s6">
+                <select multiple id="selDepartment" formControlName="departments">
+                    <option *ngFor="let d of departmentList" value="{{d.id}}">{{d.nombre}}</option>
+                </select>
+                <label>Departamentos</label>
+            </div>
         </div>
         <div class="row">
             <div class="input-field col s2">

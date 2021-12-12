@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder,FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { GeneralData } from 'src/app/config/general-data';
 import { ProponentModel } from 'src/app/models/proponent/proponent.model';
@@ -7,9 +7,8 @@ import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { proponentService } from 'src/app/services/proponent/proponent.service';
 import { BondingService } from 'src/app/services/parameters/bonding.service';
 import { BondingModel } from 'src/app/models/parameters/bonding.model';
-//import { BrandService } from 'src/app/services/parameters/typeVinculation.service';
-//import { CategoryService } from 'src/app/services/parameters/department.service';
-//import { ProponentService } from 'src/app/services/proponent/proponent.service';
+import { DepartmentModel } from 'src/app/models/parameters/department.model';
+import { DepartmentService } from 'src/app/services/parameters/department.service';
 
 declare const OpenGeneralMessageModal: any;
 declare const InitSelectById: any;
@@ -21,11 +20,11 @@ declare const InitSelectById: any;
 })
 export class ProponentCreationComponent implements OnInit {
 
-  //departmentList: DepartmentModel[] = [];
+  departmentList: DepartmentModel[] = [];
   bondingList: BondingModel[] = [];
   dataForm: FormGroup = new FormGroup({});
   formFile: FormGroup = new FormGroup({});
-  url: string= GeneralData.MS_BONDING_URL;
+  url: string = GeneralData.MS_BONDING_URL;
   uploadedFilename?: string = "";
   uploadedFile: boolean = false;
 
@@ -34,6 +33,7 @@ export class ProponentCreationComponent implements OnInit {
     private router: Router,
     private service: proponentService,
     private bondingService: BondingService,
+    private departmentService: DepartmentService,
   ) { }
 
   ngOnInit(): void {
@@ -56,57 +56,71 @@ export class ProponentCreationComponent implements OnInit {
       }
     );
 
-    //this.departmentService.GetRecordList().subscribe(
-    //  {
-    //    next: (data: DepartmentModel[]) => {
-    //      this.departmentList = data;
-    //      setTimeout(() => {
-    //        InitSelectById("selDepartment");
-    //      }, 100);
-    //    }
-    //  }
-    //);
+    this.departmentService.GetRecordList().subscribe(
+      {
+        next: (data: DepartmentModel[]) => {
+          this.departmentList = data;
+          setTimeout(() => {
+            InitSelectById("selDepartment");
+          }, 100);
+        }
+      }
+    );
   }
 
   CreateForm() {
     this.dataForm = this.fb.group({
-      document: [ [Validators.required]],
+      document: ["", [Validators.required]],
       firstName: ["", [Validators.required]],
       otherName: ["", [Validators.required]],
       firstLastName: ["", [Validators.required]],
       otherLastName: ["", [Validators.required]],
       email: ["", [Validators.required]],
-      phone: [ [Validators.required]],
-      typeVinculationId: [ [Validators.required]],
-      department: ["", [Validators.required]],
-      main_image:["", [Validators.required]],
+      phone: ["", [Validators.required]],
+      typeVinculationId: ["", [Validators.required]],
+      departments: [[], [Validators.required]],
+      main_image: ["", [Validators.required]],
     });
 
   }
 
-  CreateFormFile(){
+  CreateFormFile() {
     this.formFile = this.fb.group({
-      file:["", []]
+      file: ["", []]
     });
   }
 
   SaveRecord() {
     let model = new ProponentModel();
-    let departmentId = 0;
-    model.documento = this.dataForm.controls["document"].value;
+
+    model.documento = parseInt(this.dataForm.controls["document"].value);
     model.primerNombre = this.dataForm.controls["firstName"].value;
     model.otroNombre = this.dataForm.controls["otherName"].value;
     model.primerApellido = this.dataForm.controls["firstLastName"].value;
     model.otroApellido = this.dataForm.controls["otherLastName"].value;
-    model.celular = this.dataForm.controls["phone"].value;
+    model.celular = parseInt(this.dataForm.controls["phone"].value);
     model.correo = this.dataForm.controls["email"].value;
     model.tipoVinculacionId = parseInt(this.dataForm.controls["typeVinculationId"].value);
     model.foto = this.dataForm.controls["main_image"].value;
-    console.log(model, departmentId, "Holaa")
+
     this.service.SaveRecord(model).subscribe({
       next: (data: ProponentModel) => {
-        OpenGeneralMessageModal(GeneralData.SAVED_MESSAGE);
-        this.router.navigate(["/proponent/proponent-list"]);
+        if (data.id) {
+
+          let stringDepartments = this.dataForm.controls["departments"].value;
+          let numbersDepartments = []
+
+          for (let i of stringDepartments) {
+            numbersDepartments.push(parseInt(i))
+          }
+
+          this.service.SaveDepartments(data.id, numbersDepartments).subscribe({
+            next: (dat: boolean) => {
+              OpenGeneralMessageModal(GeneralData.SAVED_MESSAGE);
+              this.router.navigate(["/proponent/proponent-list"]);
+            }
+          })
+        }
       },
       error: (err: any) => {
         OpenGeneralMessageModal(GeneralData.ERROR_MESSAGE);
@@ -114,18 +128,18 @@ export class ProponentCreationComponent implements OnInit {
     });
   }
 
-  OnchangeInputFile(event: any){
-    if(event.target.files.length > 0){
+  OnchangeInputFile(event: any) {
+    if (event.target.files.length > 0) {
       const file = event.target.files[0];
       this.formFile.controls["file"].setValue(file);
     }
   }
 
-  UploadImage(){
+  UploadImage() {
     const formData = new FormData();
     formData.append("file", this.formFile.controls["file"].value);
     this.service.UploadFile(formData).subscribe({
-      next: (data: UploadedFileModel) =>{
+      next: (data: UploadedFileModel) => {
         this.dataForm.controls["main_image"].setValue(data.filename)
         this.uploadedFilename = data.filename;
         this.uploadedFile = true;
