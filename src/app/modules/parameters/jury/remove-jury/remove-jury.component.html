@@ -1,1 +1,36 @@
-<p>remove-jury works!</p>
+<div class="row">
+    <div class="row">
+        <div class="input-field col s12">
+            <label>Esta seguro de eliminar el registro con la siguiente informacion: </label>
+            <br />
+            <ul>
+                <li>
+                    <strong class="red-text">Id:</strong> {{id}}
+                </li>
+                <li>
+                    <strong class="red-text">Nombre:</strong> {{nombre}}
+                </li>
+                <li>
+                    <strong class="red-text">Apellidos:</strong> {{apellidos}}
+                </li>
+                <li>
+                    <strong class="red-text">Correo:</strong> {{correo}}
+                </li>
+                <li>
+                    <strong class="red-text">Entidad:</strong> {{entidad}}
+                </li>
+                <li>
+                    <strong class="red-text">Telefono:</strong> {{telefono}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s2">
+            <a routerLink="/parameters/jury-list" class="btn btn-danger red">Cancelar</a>
+        </div>
+        <div class="input-field col s10">
+            <button (click)="RemoveRecord()" class="btn btn-danger green">Confirmar</button>
+        </div>
+    </div>
+</div>

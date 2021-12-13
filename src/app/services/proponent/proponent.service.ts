@@ -17,8 +17,9 @@ export class proponentService {
 
   constructor(
     private http: HttpClient
+    //private localStorageService: LocalStorageService
   ) {
-
+    //this.token = this.localStorageService.GetToken();
   }
 
   GetRecordList(): Observable<ProponentModel[]> {
@@ -32,7 +33,6 @@ export class proponentService {
   SaveRecord(data: ProponentModel): Observable<ProponentModel> {
     return this.http.post<ProponentModel>(
       `${this.url}/proponente-trabajos`, {
-      id: data.id,
       documento: data.documento,
       primerNombre: data.primerNombre,
       otroNombre: data.otroNombre,
