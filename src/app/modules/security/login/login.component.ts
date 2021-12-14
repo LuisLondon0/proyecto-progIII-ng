@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   CreateForm() {
     this.form = this.fb.group({
       username: ["esteban.1701825703@ucaldas.edu.co", [Validators.required, Validators.email, Validators.minLength(GeneralData.EMAIL_MIN_LENGHT)]],
-      password: ["estebanhv1112", [Validators.required, Validators.minLength(GeneralData.PASSWORD_MIN_LENGHT)]]
+      password: ["jO4SyRnd", [Validators.required, Validators.minLength(GeneralData.PASSWORD_MIN_LENGHT)]]
     });
   }
 

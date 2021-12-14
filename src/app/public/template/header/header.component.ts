@@ -25,7 +25,7 @@ export class HeaderComponent implements OnInit {
             this.user_data = data.usuario?.nombre;
           }
         },
-        error: (err) => {
+        error: (err) => { 
           
         }
       }

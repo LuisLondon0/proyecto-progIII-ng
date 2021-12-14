@@ -4,20 +4,20 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { SessionData } from 'src/app/models/session-data.model';
 import { GeneralData } from '../../config/general-data';
-import { UserCredentialsModel } from '../../models/user-credencials.model';
+import { UserCredentialsModel, UserCredentialsModelChange, UserCredentialsModelPass } from '../../models/user-credencials.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SecurityService {
-sessionDataSubject: BehaviorSubject<SessionData> = new BehaviorSubject<SessionData>(new SessionData())
-   
-url: string= GeneralData.ADMIN_USERS_URL
+  sessionDataSubject: BehaviorSubject<SessionData> = new BehaviorSubject<SessionData>(new SessionData())
+
+  url: string = GeneralData.ADMIN_USERS_URL
   constructor(
     private http: HttpClient
   ) {
     this.IsThereActiveSession()
-   }
+  }
 
   IsThereActiveSession() {
     let data = localStorage.getItem("session-data");
@@ -28,18 +28,36 @@ url: string= GeneralData.ADMIN_USERS_URL
     }
   }
 
-  RefreshSessionData(data: SessionData){
+  RefreshSessionData(data: SessionData) {
     this.sessionDataSubject.next(data);
   }
 
-  GetSessionStatus(){
+  GetSessionStatus() {
     return this.sessionDataSubject.asObservable();
   }
 
-  Login(model: UserCredentialsModel): Observable<any>{
-  return this.http.post<SessionData>(`${this.url}/reconocer-usuario`,{
-    usuario: model.username,
-    clave: model.password
-  })
-}
+  Login(model: UserCredentialsModel): Observable<any> {
+    return this.http.post<SessionData>(`${this.url}/reconocer-usuario`, {
+      usuario: model.username,
+      clave: model.password
+    })
+  }
+
+  ResetPassword(model: UserCredentialsModelPass): Observable<any> {
+    return this.http.post(`${this.url}/recuperar-clave`, {
+      correo: model.correo
+      
+    })
+  }
+
+  ChangePassword(model: UserCredentialsModelChange): Observable<any> {
+    return this.http.post(`${this.url}/cambiar-clave`, {
+      id_usuario: model.id_usuario,
+      clave_actual: model.clave_actual,
+      nueva_clave:model.nueva_clave
+      
+    })
+  }
+
+
 }
