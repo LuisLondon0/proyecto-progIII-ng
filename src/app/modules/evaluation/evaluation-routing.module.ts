@@ -24,7 +24,7 @@ const routes: Routes = [
     component: RemoveEvaluationComponent
   },
   {
-    path: "accept-reject-evaluation",
+    path: "accept-reject-evaluation/:id",
     component: AcceptRejectEvaluationComponent
   },
 ];

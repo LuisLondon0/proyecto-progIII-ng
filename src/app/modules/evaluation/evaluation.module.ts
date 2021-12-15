@@ -7,6 +7,8 @@ import { EvaluationEditionComponent } from './evaluation-edition/evaluation-edit
 import { EvaluationListComponent } from './evaluation-list/evaluation-list.component';
 import { RemoveEvaluationComponent } from './remove-evaluation/remove-evaluation.component';
 import { AcceptRejectEvaluationComponent } from './accept-reject-evaluation/accept-reject-evaluation.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({
@@ -19,7 +21,10 @@ import { AcceptRejectEvaluationComponent } from './accept-reject-evaluation/acce
   ],
   imports: [
     CommonModule,
-    EvaluationRoutingModule
+    EvaluationRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgxPaginationModule
   ]
 })
 export class EvaluationModule { }

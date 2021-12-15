@@ -1,1 +1,29 @@
-<p>accept-reject-evaluation works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="fechaRespuesta" id="fecha" type="datetime-local">
+                <label for="fecha" class="active">Fecha</label>
+            </div>
+            <div class="input-field col s3">
+                <select formControlName="respuesta">
+                    <option value= "1" >Aceptar</option>
+                    <option value= "2" >Rechazar</option>
+                </select>
+                <label>Respuesta</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="observaciones" id="observaciones" type="text">
+                <label for="observaciones">Observaciones</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/evaluation/evaluation-list" class="btn btn-danger red">Cancelar</a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-danger green">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>

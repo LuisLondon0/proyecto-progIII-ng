@@ -1,1 +1,30 @@
-<p>evaluation-creation works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="fechaInvitacion" id="fecha" type="datetime-local">
+                <label for="fecha" class="active">Fecha</label>
+            </div>
+            <div class="input-field col s3">
+                <select id="selJury" formControlName="juradoId">
+                    <option *ngFor="let j of juryList" value="{{j.id}}">{{j.nombre}} {{j.apellidos}}</option>
+                </select>
+                <label>Jurado</label>
+            </div>
+            <div class="input-field col s3">
+                <select id="selRequest" formControlName="solicitudId">
+                    <option *ngFor="let r of requestList" value="{{r.id}}">{{r.nombreTrabajo}}</option>
+                </select>
+                <label>Solicitud</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/request/request-list" class="btn btn-danger red">Cancelar</a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="SaveRecord()" class="btn btn-danger green">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
