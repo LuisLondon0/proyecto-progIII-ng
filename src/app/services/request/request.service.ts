@@ -6,6 +6,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
 import { RequestProponentModel } from 'src/app/models/request/request-proponent.model';
 import { CommitteeModel } from 'src/app/models/parameters/committee.model';
+import { LocalStorageService } from '../shared/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -16,10 +17,10 @@ export class RequestService {
   filter: string = `?filter={"include":[{"relation":"modalidad"},{"relation":"tipoSolicitud"},{"relation":"comites"}]}`;
 
   constructor(
-    private http: HttpClient
-    //private localStorageService: LocalStorageService
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
   ) {
-    //this.token = this.localStorageService.GetToken();
+    this.token = this.localStorageService.GetToken();
   }
 
   GetRecordList(): Observable<RequestModel[]> {

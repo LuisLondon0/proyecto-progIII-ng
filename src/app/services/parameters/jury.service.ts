@@ -5,6 +5,7 @@ import { GeneralData } from 'src/app/config/general-data';
 import { JuryModel } from 'src/app/models/parameters/jury.model';
 import { LineOfResearchModel } from 'src/app/models/parameters/line-of-research.model';
 import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
+import { LocalStorageService } from '../shared/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,11 +16,11 @@ export class JuryService {
   filter: string = `?filter={"include":[{"relation":"lineaInvestigacions"}]}`;
 
   constructor(
-    private http: HttpClient
-    //private localStorageService: LocalStorageService
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
   ) {
-    //this.token = this.localStorageService.GetToken();
-  }
+    this.token = this.localStorageService.GetToken();
+   }
 
   GetRecordList(): Observable<JuryModel[]> {
     return this.http.get<JuryModel[]>(`${this.url}/jurados${this.filter}`);
@@ -40,7 +41,7 @@ export class JuryService {
     },
       {
         headers: new HttpHeaders({
-          //Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${this.token}`
         })
       });
   }
@@ -73,7 +74,7 @@ export class JuryService {
       },
       {
         headers: new HttpHeaders({
-          //Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${this.token}`
         })
       });
   }
@@ -83,7 +84,7 @@ export class JuryService {
       `${this.url}/jurados/${id}`,
       {
         headers: new HttpHeaders({
-          //Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${this.token}`
         })
       });
   }

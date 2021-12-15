@@ -16,10 +16,10 @@ export class proponentService {
   filter: string = `?filter={"include":[{"relation":"departamentos"},{"relation":"tipoVinculacion"}]}`;
 
   constructor(
-    private http: HttpClient
-    //private localStorageService: LocalStorageService
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
   ) {
-    //this.token = this.localStorageService.GetToken();
+    this.token = this.localStorageService.GetToken();
   }
 
   GetRecordList(): Observable<ProponentModel[]> {
@@ -45,7 +45,7 @@ export class proponentService {
     },
       {
         headers: new HttpHeaders({
-          //Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${this.token}`
         })
       });
   }
@@ -83,7 +83,7 @@ export class proponentService {
       },
       {
         headers: new HttpHeaders({
-          //Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${this.token}`
         })
       });
   }
@@ -93,7 +93,7 @@ export class proponentService {
       `${this.url}/proponente-trabajos/${id}`,
       {
         headers: new HttpHeaders({
-          //Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${this.token}`
         })
       });
   }
@@ -104,7 +104,7 @@ export class proponentService {
       formData,
       {
         headers: new HttpHeaders({
-          //Authorization: `Bearer ${this.token}`
+          Authorization: `Bearer ${this.token}`
         })
       });
   }

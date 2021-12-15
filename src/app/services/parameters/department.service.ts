@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { DepartmentModel } from 'src/app/models/parameters/department.model';
+import { LocalStorageService } from '../shared/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,10 @@ export class DepartmentService {
   filter: string = `?filter={"include":[{"relation":"facultad"}]}`;
 
   constructor(
-    private http: HttpClient
-    //private localStorageService: LocalStorageService
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
   ) {
-    //this.token = this.localStorageService.GetToken();
+    this.token = this.localStorageService.GetToken();
    }
 
   GetRecordList(): Observable<DepartmentModel[]>{

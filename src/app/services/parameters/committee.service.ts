@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { CommitteeModel } from 'src/app/models/parameters/committee.model';
+import { LocalStorageService } from '../shared/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,10 +13,10 @@ export class CommitteeService {
   token: string = "";
 
   constructor(
-    private http: HttpClient
-    //private localStorageService: LocalStorageService
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
   ) {
-    //this.token = this.localStorageService.GetToken();
+    this.token = this.localStorageService.GetToken();
    }
 
   GetRecordList(): Observable<CommitteeModel[]>{

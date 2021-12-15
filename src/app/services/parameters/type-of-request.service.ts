@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { GeneralData } from 'src/app/config/general-data';
 import { TypeOfRequestModel } from 'src/app/models/parameters/type-of-request.model';
 import { UploadedFileModel } from 'src/app/models/uploaded.file.model';
+import { LocalStorageService } from '../shared/local-storage.service';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,10 @@ export class TypeOfRequestService {
   token: string = "";
 
   constructor(
-    private http: HttpClient
-    //private localStorageService: LocalStorageService
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
   ) {
-    //this.token = this.localStorageService.GetToken();
+    this.token = this.localStorageService.GetToken();
    }
 
   GetRecordList(): Observable<TypeOfRequestModel[]>{

@@ -8,19 +8,17 @@ function OpenGeneralMessageModal(message) {
 function OpenDropDownParameters(){
   let elem = document.querySelector("#dropdown1")
   var instance = M.Dropdown.getInstance(elem);
-  instance.open();
+ 
 }
 function OpenDropDownCount(){
   let elem = document.querySelector("#dropdown2")
   var instance = M.Dropdown.getInstance(elem);
-  instance.open();
+  
 }
 
 
 function Carousel(){
   console.log("hola carrusel")
   let elem = document.querySelector("#carousel")
-  var instance = M.Carousel.getInstance(elem);
-  instance.next();
-  instance.prev();
+  
 }

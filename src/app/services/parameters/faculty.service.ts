@@ -14,12 +14,11 @@ export class FacultyService {
   token: string = "";
 
   constructor(
-    private http: HttpClient
-    //private localStorageService: LocalStorageService
+    private http: HttpClient,
+    private localStorageService: LocalStorageService
   ) {
-    //this.token = this.localStorageService.GetToken();
+    this.token = this.localStorageService.GetToken();
    }
-
   GetRecordList(): Observable<FacultyModel[]>{
     return this.http.get<FacultyModel[]>(`${this.url}/facultads`)
   }
