@@ -17,7 +17,7 @@ declare const OpenGeneralMessageModal: any;
 
 export class ChangePasswordComponent implements OnInit {
   form: FormGroup = new FormGroup({})
-  _id: string = "";
+  _id: any = "";
 
   subscription: Subscription = new Subscription();
 
@@ -31,55 +31,64 @@ export class ChangePasswordComponent implements OnInit {
   ngOnInit(): void {
     this.CreateForm()
     this.getid()
-    
-    
+
+
   }
 
-  getid(){
-    let usuario =this.localStorageService.GetUser()
+  getid() {
+    let usuario = this.localStorageService.GetUser()
     if (usuario._id) {
 
-      this._id= usuario._id
+      this._id = usuario._id
+    } else {
+      this._id = usuario.id
     }
-    
+
   }
 
   ChangePassword() {
-    if (this.form.invalid) {
-     
-      OpenGeneralMessageModal(GeneralData.INVALID_FORM_MESSAGE)
-    } else {
-      OpenGeneralMessageModal(GeneralData.VALID_FORM_MESSAGE)
-     
-      let modelo = new UserCredentialsModelChange()
-      modelo.id_usuario = this._id
-      modelo.clave_actual = MD5(this.GetForm['password_Ac'].value).toString()
-      modelo.nueva_clave = MD5(this.GetForm['New_password'].value).toString()
-      
-      this.securityService.ChangePassword(modelo).subscribe({
-       next: (data: any) => {
-          console.log(data);
-          this.router.navigate(["/home"])
-         /* this.localStorageService.SaveSessionData(data);
-          data.isLoggedIn = true;
-          this.securityService.RefreshSessionData(data);*/
-          
-        },
-        error: (error: any) => {
-          OpenGeneralMessageModal(GeneralData.GENERAL_ERROR_MESSAGE)
-        
-        }
-      })
-    }
+
+
+
+    let modelo = new UserCredentialsModelChange()
+    modelo.id_usuario = this._id
+    modelo.idusuario = this._id
+    modelo.clave_actual = MD5(this.GetForm['password_Ac'].value).toString()
+    modelo.nueva_clave = MD5(this.GetForm['New_password'].value).toString()
+
+    this.securityService.ChangePassword(modelo).subscribe({
+      next: (data: any) => {
+        OpenGeneralMessageModal(GeneralData.VALID_FORM_MESSAGE)
+        console.log(data);
+        this.router.navigate(["/home"])
+      },
+      error: (error: any) => {
+   
+        this.securityService.ChangePasswordJ(modelo).subscribe({
+          next: (data: any) => {
+            OpenGeneralMessageModal(GeneralData.VALID_FORM_MESSAGE)
+            console.log(data);
+            this.router.navigate(["/home"])
+          },
+          error: (error: any) => {
+            OpenGeneralMessageModal(GeneralData.GENERAL_ERROR_MESSAGE)
+
+
+          }
+        })
+
+      }
+    })
+
   }
 
 
   CreateForm() {
     this.form = this.fb.group({
-     
+
       password_Ac: ["", [Validators.required, Validators.minLength(GeneralData.PASSWORD_MIN_LENGHT)]],
       New_password: ["", [Validators.required, Validators.minLength(GeneralData.PASSWORD_MIN_LENGHT)]]
-    
+
     });
   }
 

@@ -8,7 +8,7 @@ export class UserCredentialsModelPass{
     
 }
 export class UserCredentialsModelChange{
-    
+    idusuario?: number;
     id_usuario?: string;
     clave_actual?: string;
     nueva_clave?: string;

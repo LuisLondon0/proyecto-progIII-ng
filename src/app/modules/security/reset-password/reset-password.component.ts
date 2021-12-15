@@ -22,11 +22,8 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   ResetPassword() {
-    if (this.form.invalid) {
-     
-      OpenGeneralMessageModal(GeneralData.INVALID_FORM_MESSAGE)
-    } else {
-      OpenGeneralMessageModal(GeneralData.VALID_FORM_MESSAGE)
+  
+      
      
       let modelo = new UserCredentialsModelPass();
       modelo.correo = this.GetForm['correo'].value
@@ -35,17 +32,27 @@ export class ResetPasswordComponent implements OnInit {
        next: (data: any) => {
           console.log(data);
           this.router.navigate(["security/login"])
-         /* this.localStorageService.SaveSessionData(data);
-          data.isLoggedIn = true;
-          this.securityService.RefreshSessionData(data);*/
-          
+          OpenGeneralMessageModal(GeneralData.VALID_FORM_MESSAGE)
+      
         },
         error: (error: any) => {
-          OpenGeneralMessageModal(GeneralData.GENERAL_ERROR_MESSAGE)
+          this.securityService.ResetPasswordJ(modelo).subscribe({
+            next: (data: any) => {
+               console.log(data);
+               this.router.navigate(["security/login"])
+               OpenGeneralMessageModal(GeneralData.VALID_FORM_MESSAGE)
+           
+             },
+             error: (error: any) => {
+               OpenGeneralMessageModal(GeneralData.GENERAL_ERROR_MESSAGE)
+             
+             }
+           })
+          
         
         }
       })
-    }
+    
   }
 
   CreateForm() {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup,Validators  } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { GeneralData } from 'src/app/config/general-data';
 import { UserCredentialsModel } from 'src/app/models/user-credencials.model';
 import { MD5 } from 'crypto-js';
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private securityService: SecurityService,
-    private localStorageService : LocalStorageService,
+    private localStorageService: LocalStorageService,
     private router: Router
   ) { }
 
@@ -37,28 +37,37 @@ export class LoginComponent implements OnInit {
   }
 
   Login() {
-    if (this.form.invalid) {
-     
-      OpenGeneralMessageModal(GeneralData.INVALID_FORM_MESSAGE)
-    } else {
-     // OpenGeneralMessageModal(GeneralData.VALID_FORM_MESSAGE)
-     
-      let modelo = new UserCredentialsModel();
-      modelo.username = this.GetForm['username'].value
-      modelo.password = MD5(this.GetForm['password'].value).toString();
-      this.securityService.Login(modelo).subscribe({
-        next: (data: SessionData) => {
-          console.log(data);
-          this.localStorageService.SaveSessionData(data);
-          data.isLoggedIn = true;
-          this.securityService.RefreshSessionData(data);
-          this.router.navigate(["/home"]);
-        },
-        error: (error: any) => {
-          OpenGeneralMessageModal(GeneralData.GENERAL_ERROR_MESSAGE)
-        }
-      });
-    }
+
+    // OpenGeneralMessageModal(GeneralData.VALID_FORM_MESSAGE)
+
+    let modelo = new UserCredentialsModel();
+    modelo.username = this.GetForm['username'].value
+    modelo.password = MD5(this.GetForm['password'].value).toString();
+    this.securityService.Login(modelo).subscribe({
+      next: (data: SessionData) => {
+        console.log(data);
+        this.localStorageService.SaveSessionData(data);
+        data.isLoggedIn = true;
+        this.securityService.RefreshSessionData(data);
+        this.router.navigate(["/home"]);
+      },
+      error: (error: any) => {
+        
+        this.securityService.LoginJ(modelo).subscribe({
+          next: (data: SessionData) => {
+            console.log(data);
+            this.localStorageService.SaveSessionData(data);
+            data.isLoggedIn = true;
+            this.securityService.RefreshSessionData(data);
+            this.router.navigate(["/home"]);
+          },
+          error: (error: any) => {
+            OpenGeneralMessageModal(GeneralData.INVALID_FORM_MESSAGE)
+          }
+        })
+      }
+    });
+
   }
 
 
