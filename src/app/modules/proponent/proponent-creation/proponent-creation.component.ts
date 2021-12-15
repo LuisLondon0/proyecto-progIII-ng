@@ -13,6 +13,7 @@ import { DepartmentService } from 'src/app/services/parameters/department.servic
 declare const OpenGeneralMessageModal: any;
 declare const InitSelectById: any;
 
+
 @Component({
   selector: 'app-proponent-creation',
   templateUrl: './proponent-creation.component.html',
@@ -41,6 +42,7 @@ export class ProponentCreationComponent implements OnInit {
     this.CreateForm();
     this.CreateFormFile();
     this.GetOptionsToSelects();
+    
   }
 
   GetOptionsToSelects() {

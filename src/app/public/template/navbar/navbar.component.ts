@@ -4,6 +4,8 @@ import { Subscription } from 'rxjs';
 import { SessionData } from 'src/app/models/session-data.model';
 import { SecurityService } from 'src/app/services/shared/security.service';
 
+declare const OpenDropDownParameters: any;
+declare const OpenDropDownCount: any;
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -15,7 +17,7 @@ export class NavbarComponent implements OnInit {
 
   subscription: Subscription = new Subscription();
 
-  constructor(private securityService: SecurityService) { 
+  constructor(private securityService: SecurityService) {
 
   }
 
@@ -31,6 +33,13 @@ export class NavbarComponent implements OnInit {
         }
       }
     );
+    this.OpenDropDown();
+  }
+
+
+  OpenDropDown() {
+    OpenDropDownParameters()
+    OpenDropDownCount()
   }
 
 }
