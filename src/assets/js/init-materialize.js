@@ -9,6 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
         opacity: 0.8
     });
 });
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems, {});
+  });
 
 function InitSelectById(id) {
     var elems = document.querySelector('#' + id);

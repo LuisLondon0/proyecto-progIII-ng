@@ -22,3 +22,9 @@ function Carousel(){
   let elem = document.querySelector("#carousel")
   
 }
+function initSelect(){
+  
+  var instance = M.FormSelect.getInstance(elem);
+  
+}
+

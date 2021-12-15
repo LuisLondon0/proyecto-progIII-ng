@@ -2,11 +2,11 @@
     <form [formGroup]="form" class="col s12">
         <div class="row">
             <div class="input-field col s3">
-                <input formControlName="fechaRespuesta" id="fecha" type="datetime-local">
-                <label for="fecha" class="active">Fecha</label>
+                <input formControlName="fechaRespuesta" id="fechaRespuesta" type="datetime-local">
+                <label for="fechaRespuesta" class="active">Fecha</label>
             </div>
             <div class="input-field col s3">
-                <select formControlName="respuesta">
+                <select id="sel" formControlName="respuesta">
                     <option value= "1" >Aceptar</option>
                     <option value= "2" >Rechazar</option>
                 </select>

@@ -8,6 +8,7 @@ import { EvaluationService } from 'src/app/services/evaluation/evaluation.servic
 declare const OpenGeneralMessageModal: any;
 declare const InitSelectById: any;
 
+
 @Component({
   selector: 'app-accept-reject-evaluation',
   templateUrl: './accept-reject-evaluation.component.html',
@@ -21,12 +22,19 @@ export class AcceptRejectEvaluationComponent implements OnInit {
     private router: Router,
     private service: EvaluationService,
     private route: ActivatedRoute,
+    
   ) { }
 
   ngOnInit(): void {
     this.CreateForm();
+    this.GetOptionsToSelects();
   }
 
+  GetOptionsToSelects() {
+   
+          InitSelectById("sel");
+       
+    }
   CreateForm() {
     this.form = this.fb.group({
       id: ["", [Validators.required]],
@@ -34,16 +42,17 @@ export class AcceptRejectEvaluationComponent implements OnInit {
       respuesta: ["", [Validators.required]],
       observaciones: ["", [Validators.required]],
     })
-    let id = parseInt(this.route.snapshot.params["id"]);
-    this.form.controls["id"].setValue(id);
+    
   }
 
   SaveRecord() {
     let model = new EvaluationModel();
-
+    let id = parseInt(this.route.snapshot.params["id"]);
+    this.form.controls["id"].setValue(id);
+    model.id=parseInt(this.form.controls["id"].value)
     let date: Date = new Date(this.form.controls["fechaRespuesta"].value);
-    model.fechaInvitacion = date.toISOString();
-
+    model.fechaRespuesta = date.toISOString();
+    
     model.respuesta = parseInt(this.form.controls["respuesta"].value);
     model.observaciones = this.form.controls["observaciones"].value;
 
