@@ -10,5 +10,5 @@ export namespace GeneralData{
     export const EDITED_MESSAGE = "Registro editado";
     export const REMOVED_MESSAGE = "Registro eliminado";
     export const ERROR_MESSAGE = "Error en el backend";
-    export const RECORDS_BY_PAGE = 7;
+    export const RECORDS_BY_PAGE = 5;
 }
