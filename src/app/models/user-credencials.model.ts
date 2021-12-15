@@ -1,6 +1,7 @@
 export class UserCredentialsModel{
     username?: string;
     password?: string;
+<<<<<<< HEAD
 }
 
 export class UserCredentialsModelPass{
@@ -15,3 +16,6 @@ export class UserCredentialsModelChange{
       
     
 }
+=======
+}
+>>>>>>> main

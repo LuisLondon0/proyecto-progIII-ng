@@ -12,7 +12,7 @@ const routes: Routes = [
     component: EvaluationCreationComponent
   },
   {
-    path: "evaluation-edition",
+    path: "evaluation-edition/:id",
     component: EvaluationEditionComponent
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
     component: EvaluationListComponent
   },
   {
-    path: "remove-evaluation",
+    path: "remove-evaluation/:id",
     component: RemoveEvaluationComponent
   },
   {

@@ -1,1 +1,24 @@
-<p>remove-line-of-research works!</p>
+<div class="row">
+    <div class="row">
+        <div class="input-field col s12">
+            <label>Esta seguro de eliminar el registro con la siguiente informacion: </label>
+            <br />
+            <ul>
+                <li>
+                    <strong class="red-text">Id:</strong> {{id}}
+                </li>
+                <li>
+                    <strong class="red-text">Nombre:</strong> {{nombre}}
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s2">
+            <a routerLink="/parameters/line-of-research-list" class="btn btn-danger red">Cancelar</a>
+        </div>
+        <div class="input-field col s10">
+            <button (click)="RemoveRecord()" class="btn btn-danger green">Confirmar</button>
+        </div>
+    </div>
+</div>

@@ -1,1 +1,25 @@
-<p>faculty-list works!</p>
+<br/>
+<a routerLink="/parameters/faculty-creation" class="btn btn-success">Crear Solicitud</a>
+
+<table class="responsive-table">
+    <thead>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Acciones</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let r of recordList | paginate: {itemsPerPage: pageSize, currentPage: p, totalItems: total }">
+            <td>{{r.id}}</td>
+            <td>{{r.nombre}}</td>
+            <td>
+                <a routerLink="/parameters/faculty-edition/{{r.id}}" class="btn btn-warning purple">Editar</a> &nbsp;
+                <a routerLink="/parameters/remove-faculty/{{r.id}}" class="btn btn-warning red">Eliminar</a>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3">
+                <pagination-controls (pageChange)="p = $event" previousLabel="Anterior" nextLabel="Siguiente"></pagination-controls>
+            </td>
+        </tr>
+    </tbody>
+</table>

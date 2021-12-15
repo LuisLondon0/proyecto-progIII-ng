@@ -1,14 +1,24 @@
 import { Injectable } from '@angular/core';
 import { SessionData } from 'src/app/models/session-data.model';
+<<<<<<< HEAD
 import { UserData } from 'src/app/models/user-data.model';
+=======
+>>>>>>> main
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocalStorageService {
+<<<<<<< HEAD
   
   constructor() { }
 
+=======
+
+  constructor() { }
+
+
+>>>>>>> main
   SaveSessionData(data: SessionData): boolean{
     let saved = localStorage.getItem("session-data");
     if(saved){
@@ -32,6 +42,7 @@ export class LocalStorageService {
     }
     return "";
   }
+<<<<<<< HEAD
   GetUser(): UserData{
     let saved = localStorage.getItem("session-data");
     let aux = new UserData
@@ -41,4 +52,7 @@ export class LocalStorageService {
     }
     return aux
   }
+=======
+
+>>>>>>> main
 }

@@ -1,1 +1,41 @@
-<p>jury-edition works!</p>
+<div class="row">
+    <form [formGroup]="form" class="col s12">
+        <input type="hidden" formControlName="id" />
+        <div class="row">
+            <div class="input-field col s3">
+                <input formControlName="nombre" id="nombre" type="text">
+                <label for="nombre" class="active">Nombre</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="apellidos" id="apellidos" type="text">
+                <label for="apellidos" class="active">Apellidos</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="correo" id="correo" type="text">
+                <label for="correo" class="active">Correo</label>
+            </div>
+            <div class="input-field col s3">
+                <input formControlName="entidad" id="entidad" type="text">
+                <label for="entidad" class="active">Entidad</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <input formControlName="telefono" id="telefono" type="text">
+                <label for="telefono" class="active">Telefono</label>
+            </div>
+            <div class="input-field col s6">
+                <input formControlName="lineaInvestigacions" id="lineaInvestigacions" type="text" readonly>
+                <label class="active">Lineas de Investigacion</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s2">
+                <a routerLink="/parameters/jury-list" class="btn btn-danger red">Cancelar</a>
+            </div>
+            <div class="input-field col s10">
+                <button (click)="EditRecord()" class="btn btn-danger green">Guardar</button>
+            </div>
+        </div>
+    </form>
+</div>
