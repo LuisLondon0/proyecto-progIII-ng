@@ -9,8 +9,11 @@ import { InternalServerErrorComponent } from './public/errors/internal-server-er
 import { NavbarComponent } from './public/template/navbar/navbar.component';
 import { HomeComponent } from './public/general/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
+=======
 import { ReactiveFormsModule } from '@angular/forms';
 
+>>>>>>> main
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,8 +28,12 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     BrowserModule,
     AppRoutingModule,
+<<<<<<< HEAD
+    HttpClientModule
+=======
     HttpClientModule,
     ReactiveFormsModule
+>>>>>>> main
   ],
   providers: [],
   bootstrap: [AppComponent]
