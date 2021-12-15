@@ -1,0 +1,28 @@
+<div class="row">
+    <div class="row">
+        <div class="input-field col s12">
+            <label>Está seguro de eliminar por completo el registro con la siguiente información:</label>
+            <br />
+            <ul>
+                <li>
+                   <strong> Id: {{id}}</strong>
+                </li>
+                <li>
+                    <strong> Nombre: {{name}}</strong>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s2">
+            <a routerLink="/security/user-list" class="btn btn-warning red">
+                Cancelar
+            </a>
+        </div>
+        <div class="input-field col s10">
+            <button (click)="RemoveRecord()" class="btn btn-success">
+                Confirmar
+            </button>
+        </div>
+    </div>
+</div>
